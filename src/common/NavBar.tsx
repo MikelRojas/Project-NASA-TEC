@@ -21,7 +21,7 @@ export const NavBar: React.FC<{}> = () => {
             <a className="nav-link" href="#">Events</a>
           </li> 
           <li className="nav-item">
-            <a className="nav-link" href="#">Map</a>
+            <a className="nav-link" href="/map">Map</a>
           </li> 
         </ul>
       </div>
