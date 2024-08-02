@@ -1,0 +1,12 @@
+.calendar-overlay {
+    position: absolute;
+    top: 50px; /* Ajusta según necesites */
+    left: 0;
+    right: 0;
+    width: 240px;
+    height: 200px;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    background: white; /* Opcional, para que el calendario no tenga fondo transparente */
+    border: 1px solid #ddd; /* Opcional, para agregar borde */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Opcional, para agregar sombra */
+  }

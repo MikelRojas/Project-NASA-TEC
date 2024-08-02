@@ -4,7 +4,7 @@ import React from "react";
 export const NavBar: React.FC<{}> = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="">NASA</a>
+      <a className="navbar-brand" style={{ marginLeft: '12px' }} href="/">NASA</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
       </button>
