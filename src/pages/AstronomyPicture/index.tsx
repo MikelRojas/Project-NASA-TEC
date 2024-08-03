@@ -33,8 +33,9 @@ export const AstronomyPicture: React.FC<{}> = () => {
         const fetchData = async () =>{
             setLoading(true);
             try{
-                const formattedDate = selectedDate.toISOString().split('T')[0];
+                const formattedDate = new Date(selectedDate.getTime() - (selectedDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
                 const url = "https://api.nasa.gov/planetary/apod?api_key=yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ&date=" + formattedDate;
+                console.log(url);
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
