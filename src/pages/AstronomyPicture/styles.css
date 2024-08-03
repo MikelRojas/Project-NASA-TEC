@@ -18,6 +18,12 @@
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000; 
+     background: rgb(82, 82, 83, 0.8);
+     border-radius: 20px;
+     margin: 0 auto; /* Centrar horizontalmente */
+     padding: 8px;
+     width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+     max-width: 310px;
   }
   
   #calendar {
@@ -33,6 +39,11 @@
 
   #date-select {
     margin: 10px 10px 10px 15px;
+    background: rgb(82, 82, 83, 0.8);
+    border-radius: 20px;
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    max-width: 350px;
+    padding: 8px;
   }
 
   .bg-image {
