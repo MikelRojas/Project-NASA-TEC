@@ -35,7 +35,6 @@ export const AstronomyPicture: React.FC<{}> = () => {
             try{
                 const formattedDate = new Date(selectedDate.getTime() - (selectedDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
                 const url = "https://api.nasa.gov/planetary/apod?api_key=yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ&date=" + formattedDate;
-                console.log(url);
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -75,34 +74,42 @@ export const AstronomyPicture: React.FC<{}> = () => {
       }
 
       return (
-        <div style={{ position: 'relative' }}>
-          <h1>Imagen del dia</h1>
-    
-          <button id="Calendar" onClick={() => setShowCalendar(!showCalendar)}>
-            Select date
-          </button>
-          {showCalendar && (
-            <div className="calendar-overlay" ref={calendarRef}>
-                <DatePicker
-                selected={selectedDate}
-                onChange={handleDateChange}
-                minDate={minDate}
-                maxDate={maxDate}
-                inline
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                />
+        <div className="bg-image img-fluid">
+            <div style={{ position: 'relative',minHeight: '100vh'}}>
+                <h1 id="page-title">Picture of day</h1>
+            
+                <button id="calendar" onClick={() => setShowCalendar(!showCalendar)}>
+                    Select date
+                </button>
+                {showCalendar && (
+                    <div className="calendar-overlay" ref={calendarRef}>
+                        <DatePicker
+                        selected={selectedDate}
+                        onChange={handleDateChange}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        inline
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        />
+                    </div>
+                )}
+                {selectedDate && (
+                    <>
+                        <h2 id="date-select">Date: {selectedDate.toDateString()}</h2>
+                        <div className="flex-container">
+                            <div className="container-text">
+                                <h1>{data?.title}</h1>
+                                <p>{data?.explanation}</p>
+                            </div>
+                            <img src={data?.url} alt={data?.title} className="img-fluid img-custom-size" />      
+                        </div>
+                    </>
+                )} 
+
             </div>
-          )}
-          {selectedDate && (
-            <>
-              <p>Fecha seleccionada: {selectedDate.toDateString()}</p>
-              <h1>{data?.title}</h1>
-              <p>{data?.explanation}</p>
-              <img src={data?.url} alt={data?.title} />      
-            </>
-          )}
         </div>
+        
       );
 };
