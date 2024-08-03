@@ -1,0 +1,70 @@
+.home-container {
+    max-width: 800px; /* Limitar el ancho máximo para mejor legibilidad */
+    margin: 0 auto; /* Centrar horizontalmente */
+    padding: 20px; /* Espaciado interno */
+    background-color: #f8f9fa; /* Fondo claro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    font-family: 'Arial', sans-serif; /* Fuente */
+    color: #333; /* Color del texto */
+}
+
+.home-container h1 {
+    font-size: 2rem; /* Tamaño de fuente */
+    text-align: center; /* Centrarse */
+    margin-bottom: 20px; /* Espaciado inferior */
+    color: #007bff; /* Color del encabezado */
+}
+
+.home-container h2 {
+    font-size: 1.5rem; /* Tamaño de fuente */
+    margin-top: 20px; /* Espaciado superior */
+    color: #0056b3; /* Color del encabezado */
+}
+
+.home-container p {
+    line-height: 1.6; /* Altura de línea */
+    margin: 10px 0; /* Espaciado superior e inferior */
+}
+
+.home-container ul {
+    list-style-type: none; /* Quitar viñetas */
+    padding: 0; /* Quitar padding */
+}
+
+.home-container ul li {
+    margin: 10px 0; /* Espaciado entre elementos */
+}
+
+.home-container ul li a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none; /* Quitar subrayado */
+    font-weight: bold; /* Negrita */
+}
+
+.home-container ul li a:hover {
+    text-decoration: underline; /* Subrayar al pasar el ratón */
+}
+
+.manual-section {
+    margin-bottom: 20px; /* Espaciado inferior */
+    padding: 15px; /* Espaciado interno */
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #ddd; /* Borde */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+}
+
+.manual-section h3 {
+    font-size: 1.2rem; /* Tamaño de fuente */
+    color: #343a40; /* Color del encabezado */
+}
+
+.manual-section img {
+    display: block; /* Bloque para que ocupe toda la línea */
+    max-width: 100%; /* Ancho máximo del 100% */
+    height: auto; /* Altura automática */
+    margin-top: 10px; /* Espaciado superior */
+    border-radius: 4px; /* Bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
