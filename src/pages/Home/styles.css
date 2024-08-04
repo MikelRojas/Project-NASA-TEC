@@ -1,70 +1,134 @@
+/* Asegurar que la imagen de fondo cubra toda la pantalla */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('../../assets/images/wp3.jpeg'); /* Ruta a tu imagen */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */
+  background-attachment: fixed; /* Mantiene la imagen en su lugar cuando se hace scroll */
+}
+
+/* Estilos específicos para la sección Home */
 .home-container {
-    max-width: 800px; /* Limitar el ancho máximo para mejor legibilidad */
-    margin: 0 auto; /* Centrar horizontalmente */
-    padding: 20px; /* Espaciado interno */
-    background-color: #f8f9fa; /* Fondo claro */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    font-family: 'Arial', sans-serif; /* Fuente */
-    color: #333; /* Color del texto */
+  color: white;
+  padding: 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  max-width: 1000px; /* Ajusta el ancho máximo según sea necesario */
+  margin: 0 auto; /* Centrar horizontalmente */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  font-family: 'Arial', sans-serif; /* Fuente */
+  min-height: 100vh; /* Asegura que cubra al menos el 100% de la altura del viewport */
 }
 
-.home-container h1 {
-    font-size: 2rem; /* Tamaño de fuente */
-    text-align: center; /* Centrarse */
-    margin-bottom: 20px; /* Espaciado inferior */
-    color: #007bff; /* Color del encabezado */
+#page-title {
+  text-align: center;
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000; 
+  background: rgba(82, 82, 83, 0.8);
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 8px;
+  width: 100%;
+  max-width: 310px;
 }
 
-.home-container h2 {
-    font-size: 1.5rem; /* Tamaño de fuente */
-    margin-top: 20px; /* Espaciado superior */
-    color: #0056b3; /* Color del encabezado */
-}
-
-.home-container p {
-    line-height: 1.6; /* Altura de línea */
-    margin: 10px 0; /* Espaciado superior e inferior */
-}
-
-.home-container ul {
-    list-style-type: none; /* Quitar viñetas */
-    padding: 0; /* Quitar padding */
-}
-
-.home-container ul li {
-    margin: 10px 0; /* Espaciado entre elementos */
-}
-
-.home-container ul li a {
-    color: #007bff; /* Color del enlace */
-    text-decoration: none; /* Quitar subrayado */
-    font-weight: bold; /* Negrita */
-}
-
-.home-container ul li a:hover {
-    text-decoration: underline; /* Subrayar al pasar el ratón */
+.home-description, .home-manual, .home-links, .home-developers, .home-purpose {
+  background: rgba(82, 82, 83, 0.8);
+  padding: 10px;
+  margin: 10px 0px 10px 10px;
+  border-radius: 20px;
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box; /* Incluye el padding y borde en el cálculo del ancho */
+  color: #ccc; /* Cambia el color del texto a gris claro */
 }
 
 .manual-section {
-    margin-bottom: 20px; /* Espaciado inferior */
-    padding: 15px; /* Espaciado interno */
-    background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #ddd; /* Borde */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+  background: rgba(195, 195, 195, 0.8);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  color: #555; /* Cambia el color del texto a gris */
 }
 
 .manual-section h3 {
-    font-size: 1.2rem; /* Tamaño de fuente */
-    color: #343a40; /* Color del encabezado */
+  color: #343a40;
+  font-size: 1.2rem;
 }
 
 .manual-section img {
-    display: block; /* Bloque para que ocupe toda la línea */
-    max-width: 100%; /* Ancho máximo del 100% */
-    height: auto; /* Altura automática */
-    margin-top: 10px; /* Espaciado superior */
-    border-radius: 4px; /* Bordes redondeados */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-container h1, .home-container h2, .home-container p {
+  color: rgb(255, 255, 255);
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.home-container h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.home-container p {
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.home-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.home-container ul li {
+  margin: 10px 0;
+}
+
+.home-container ul li a {
+  color: #5b94cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-container ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1100px) {
+  .home-container {
+    max-width: 98%;
+  }
+  .home-description, .home-manual, .home-links, .home-developers, .home-purpose {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-container {
+    max-width: 96%;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-container {
+    max-width: 94%;
+  }
 }
