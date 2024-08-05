@@ -20,7 +20,7 @@
    1px  1px 0 #000; 
    background: rgb(82, 82, 83, 0.8);
    border-radius: 20px;
-   margin: 0 auto; /* Centrar horizontalmente */
+   margin-top: 5px; /* Centrar horizontalmente */
    padding: 8px;
    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
    max-width: 310px;
