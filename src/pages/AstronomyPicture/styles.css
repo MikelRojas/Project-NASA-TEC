@@ -1,111 +1,111 @@
 .calendar-overlay {
-    position: absolute;
-    top: 50px; /* Ajusta según necesites */
-    left: 0;
-    right: 0;
-    width: 240px;
-    height: 250px;
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-    background: white; /* Opcional, para que el calendario no tenga fondo transparente */
-    border: 1px solid #ddd; /* Opcional, para agregar borde */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Opcional, para agregar sombra */
-  }
-
-  #page-title {
-    text-align: center;
-    text-shadow: 
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000; 
-     background: rgb(82, 82, 83, 0.8);
-     border-radius: 20px;
-     margin: 0 auto; /* Centrar horizontalmente */
-     padding: 8px;
-     width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
-     max-width: 310px;
-  }
-  
-  #calendar {
-    font-size: 20px;
-    font-weight: bold;
-    background: rgb(82, 82, 83);
-    color: white;
-    height: 50px;
-    margin-left: 15px;
-    border: solid 1px;
-    border-radius: 50px;
-  }
-
-  #date-select {
-    margin: 10px 10px 10px 15px;
-    background: rgb(82, 82, 83, 0.8);
-    border-radius: 20px;
-    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
-    max-width: 350px;
-    padding: 8px;
-  }
-
-  .bg-image {
-    color: white;
-    height: 100vh; /* Asegura que cubra toda la altura del viewport */
-    background-image: url('../../assets/images/wp3.jpeg'); /* Ruta a tu imagen */
-    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* No repite la imagen */
-    background-attachment: fixed; /* Mantiene la imagen en su lugar cuando se hace scroll */
-  }
-
-  .flex-container {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    width: 100%; /* Asegura que el contenedor flexible use todo el ancho disponible */
-    box-sizing: border-box; /* Incluye el padding y borde en el cálculo del ancho */
-  }
-  
-
-.img-custom-size{
-  width: 600px;
-  height: auto;
-  border: white solid 3px;
-  margin: 10px;
-  flex: 1 1 auto;
+  position: absolute;
+  top: 50px; /* Ajusta según necesites */
+  left: 0;
+  right: 0;
+  width: 240px;
+  height: 250px;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  background: white; /* Opcional, para que el calendario no tenga fondo transparente */
+  border: 1px solid #ddd; /* Opcional, para agregar borde */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Opcional, para agregar sombra */
 }
 
- .container-text {
-  background: rgb(82, 82, 83,0.8);
-  padding: 10px;
-  margin: 10px 0px 10px 10px;
-  width: 400px;
+#page-title {
+  text-align: center;
+  text-shadow: 
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000; 
+   background: rgb(82, 82, 83, 0.8);
+   border-radius: 20px;
+   margin: 0 auto; /* Centrar horizontalmente */
+   padding: 8px;
+   width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+   max-width: 310px;
+}
+
+#calendar {
+  font-size: 20px;
+  font-weight: bold;
+  background: rgb(82, 82, 83);
+  color: white;
+  height: 50px;
+  margin-left: 15px;
+  border: solid 1px;
+  border-radius: 50px;
+}
+
+#date-select {
+  margin: 10px 10px 10px 15px;
+  background: rgb(82, 82, 83, 0.8);
   border-radius: 20px;
-  flex: 1 1 auto;
+  width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+  max-width: 350px;
+  padding: 8px;
+}
+
+.bg-image {
+  color: white;
+  height: 100vh; /* Asegura que cubra toda la altura del viewport */
+  background-image: url('../../assets/images/wp3.jpeg'); /* Ruta a tu imagen */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */
+  background-attachment: fixed; /* Mantiene la imagen en su lugar cuando se hace scroll */
+}
+
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%; /* Asegura que el contenedor flexible use todo el ancho disponible */
+  box-sizing: border-box; /* Incluye el padding y borde en el cálculo del ancho */
+}
+
+
+.img-custom-size{
+width: 600px;
+height: auto;
+border: white solid 3px;
+margin: 10px;
+flex: 1 1 auto;
+}
+
+.container-text {
+background: rgb(82, 82, 83,0.8);
+padding: 10px;
+margin: 10px 0px 10px 10px;
+width: 400px;
+border-radius: 20px;
+flex: 1 1 auto;
 }
 
 @media (max-width: 1100px) {
-  .flex-container {
-      width: 98%;
-      flex-direction: column; /* Cambia la dirección del flex a columna en pantallas pequeñas */
-      align-items: center; /* Centra los elementos en pantallas pequeñas */
-  }
+.flex-container {
+    width: 98%;
+    flex-direction: column; /* Cambia la dirección del flex a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos en pantallas pequeñas */
+}
 
-  .container-text, .img-custom-size{
-      width: 100%; /* Ajusta el ancho de los elementos al 100% del contenedor */
-      max-width: none; /* Elimina el ancho máximo para que se ajuste al contenedor */
-      margin-right: 10px;
-  }
+.container-text, .img-custom-size{
+    width: 100%; /* Ajusta el ancho de los elementos al 100% del contenedor */
+    max-width: none; /* Elimina el ancho máximo para que se ajuste al contenedor */
+    margin-right: 10px;
+}
 }
 
 @media (max-width: 700px) {
-  .flex-container {
-      width: 96%;
-      
-  }
+.flex-container {
+    width: 96%;
+    
+}
 }
 
 @media (max-width: 400px) {
-  .flex-container {
-      width: 94%;
-      
-  }
+.flex-container {
+    width: 94%;
+    
+}
 }

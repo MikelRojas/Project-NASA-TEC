@@ -1,0 +1,80 @@
+.events-container {
+    padding: 20px;
+    color: white; /* Texto en blanco */
+  }
+  
+  .date-inputs {
+    margin-bottom: 20px;
+  }
+  
+  .date-inputs label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .event-buttons {
+    margin-bottom: 20px;
+  }
+  
+  .event-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+    color: black; /* Color de texto de botón */
+  }
+  
+  .event-button.active {
+    background-color: #007bff;
+    color: white; /* Texto en blanco para el botón activo */
+  }
+  
+  .event-button:not(.active):hover {
+    background-color: #ddd;
+  }
+  
+  .events-list {
+    margin-top: 20px;
+  }
+  
+  .event-card {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white; /* Texto en blanco */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mejor legibilidad */
+  }
+  
+  .event-card h3 {
+    margin-top: 0;
+    color: white; /* Texto en blanco */
+  }
+  
+  .event-card a {
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  .event-card a:hover {
+    text-decoration: underline;
+  }
+  
+  .date-inputs input {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    color: white; /* Texto en blanco */
+    border: 1px solid white; /* Borde blanco */
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .date-inputs input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Para que el ícono del selector de fecha sea visible en fondos oscuros */
+  }
+  
