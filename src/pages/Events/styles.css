@@ -1,17 +1,89 @@
 .bg-image {
   color: white;
-  height: 100vh; /* Asegura que cubra toda la altura del viewport */
-  background-image: url('../../assets/images/wp3.jpeg'); /* Ruta a tu imagen */
-  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* No repite la imagen */
-  background-attachment: fixed; /* Mantiene la imagen en su lugar cuando se hace scroll */
+  height: 100vh;
+  background-image: url('../../assets/images/wp3.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 20px;
 }
 
-.flex-container {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 100%; /* Asegura que el contenedor flexible use todo el ancho disponible */
-  box-sizing: border-box; /* Incluye el padding y borde en el cálculo del ancho */
+.result-container {
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(255, 255, 255,0.5);
+  border-radius: 2%;
 }
+
+.eclipse-card {
+  background: rgba(82, 82, 83, 0.8);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.eclipse-card:hover {
+  transform: scale(1.03);
+}
+
+.card-image {
+  border-bottom: solid 3px white;
+}
+
+.card-body {
+  font-weight: bold;
+  background-color: rgb(56, 56, 58);
+}
+
+.card-text{
+  color: white;
+}
+
+.card-title{
+  background: rgb(255, 255, 255);
+  border-radius: 5%;
+}
+
+.date-inputs input {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  color: white; /* Texto en blanco */
+  border: 1px solid white; /* Borde blanco */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.date-inputs input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Para que el ícono del selector de fecha sea visible en fondos oscuros */
+}
+
+.date-inputs label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.event-buttons {
+  margin-bottom: 20px;
+}
+
+.event-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(82, 82, 83);
+  transition: background-color 0.3s ease;
+  color: white; 
+}
+
+.event-button.active {
+  background-color: #f0f0f0;
+  color: black; /* Color de texto de botón */
+}
+
+.event-button:not(.active):hover {
+  background-color: #ddd;
+}
+
