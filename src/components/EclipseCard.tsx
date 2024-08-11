@@ -24,6 +24,8 @@ const EclipseImg = (type: string, mode: string): string => {
       return '/images/solar-anular.jpg';
     case 'Penumbral':
       return '/images/lunar-penumbral.png';
+    case 'Hybrid':
+      return '/images/solar-partial.jpg';
     default:
       return '/images/default.jpg';
   }

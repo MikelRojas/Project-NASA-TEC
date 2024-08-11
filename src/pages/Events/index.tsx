@@ -195,11 +195,15 @@ export const Events: React.FC = () => {
               ) : error ? (
                 <p>{error}</p>
               ) : (
-                <div className="events-list">
-                  {asteroidsAndComets.map((asteroid) => (
-                    <AsteroidCard key={asteroid.id} asteroid={asteroid} />
-                  ))}
-                  {hasMoreResults && <p>To see more results you must select closer dates.</p>}
+                <div className="container mt-4">
+                  <div className="row">
+                    {asteroidsAndComets.map((asteroid) => (
+                      <div className="col-md-3 mb-3">
+                        <AsteroidCard key={asteroid.id} asteroid={asteroid} />
+                      </div>
+                    ))}
+                    {hasMoreResults && <p>To see more results you must select closer dates.</p>}
+                  </div>
                 </div>
               )}
             </div>

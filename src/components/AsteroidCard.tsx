@@ -29,10 +29,10 @@ interface AsteroidCardProps {
 
 const AsteroidCard: React.FC<AsteroidCardProps> = ({ asteroid }) => {
   return (
-    <div className="card asteroid-card">
+    <div className="card asteroid-card text-center">
       <img 
-        src="https://caracol.com.co/resizer/v2/https%3A%2F%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fprisaradioco%2FOHNJXRQLYJLHZLMEKMXHA3YZRM.jpg?auth=50d754196a47c74f4337ad5350819e0b422a0cda87b6917a46710c602c5a3202&height=624&width=1080&quality=70&smart=true" // URL de prueba de imagen
-        className="card-img-top" 
+        src="/images/asteroid.png" // URL de prueba de imagen
+        className="card-img-top card-image" 
         alt={asteroid.name} 
       />
       <div className="card-body">

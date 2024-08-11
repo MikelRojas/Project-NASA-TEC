@@ -13,20 +13,13 @@
   padding: 10px;
   margin: 10px;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 2%;
-}
-
-/* Estilos para el contenedor de las cartas */
-.events-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem; /* Espacio entre las cartas */
-  justify-content: center; /* Centrar las cartas horizontalmente */
+  border-radius: 15px;
 }
 
 /* Estilo común para todas las cartas */
 .card {
   border-radius: 15px;
+  background: rgba(82, 82, 83, 0.8);
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
@@ -54,7 +47,9 @@
 
 .card-title {
   background: rgb(255, 255, 255); /* Igual al color de fondo del título de las cartas de eclipses */
-  border-radius: 5%; /* Igual al border-radius de las cartas de eclipses */
+  border-radius: 5px; /* Igual al border-radius de las cartas de eclipses */
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .date-inputs input {
@@ -96,41 +91,4 @@
 
 .event-button:not(.active):hover {
   background-color: #ddd;
-}
-
-/* Estilo específico para las cartas de eclipses */
-.eclipse-card {
-  background: rgba(82, 82, 83, 0.8);
-}
-
-/* Estilo específico para las cartas de asteroides */
-.asteroid-card {
-  background: rgba(82, 82, 83, 0.8); /* Igual al fondo de las cartas de eclipses */
-  border-radius: 15px; /* Igual al border-radius de las cartas de eclipses */
-  overflow: hidden; /* Igual a las cartas de eclipses */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Igual a las cartas de eclipses */
-  transition: transform 0.3s ease; /* Igual a las cartas de eclipses */
-  margin-bottom: 20px; /* Espacio inferior */
-  width: 300px; /* Ancho fijo para que las cartas se alineen uniformemente */
-}
-
-.asteroid-card:hover {
-  transform: scale(1.03); /* Igual al efecto de hover de las cartas de eclipses */
-}
-
-.asteroid-card .card-img-top {
-  border-bottom: solid 3px white; /* Igual al borde inferior de las imágenes en las cartas de eclipses */
-}
-
-.asteroid-card .card-body {
-  background-color: rgb(56, 56, 58); /* Igual al color de fondo de las cartas de eclipses */
-}
-
-.asteroid-card .card-text {
-  color: white; /* Igual al color del texto de las cartas de eclipses */
-}
-
-.asteroid-card .card-title {
-  background: rgb(255, 255, 255); /* Igual al color de fondo del título de las cartas de eclipses */
-  border-radius: 5%; /* Igual al border-radius de las cartas de eclipses */
 }
