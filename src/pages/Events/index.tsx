@@ -30,8 +30,8 @@ interface NearEarthObject {
 
 
 export const Events: React.FC = () => {
-  const [startDate, setStartDate] = useState<Date>(new Date('2024-08-01'));
-  const [endDate, setEndDate] = useState<Date>(new Date('2026-08-07'));
+  const [startDate, setStartDate] = useState<Date>(new Date('2024-09-01'));
+  const [endDate, setEndDate] = useState<Date>(new Date('2024-11-01'));
   const [selectedEvent, setSelectedEvent] = useState<string>('Asteroids and Comets');
   const [eclipseType, setEclipseType] = useState<'solar' | 'lunar'>('solar');
   const [asteroidsAndComets, setAsteroidsAndComets] = useState<NearEarthObject[]>([]);
@@ -108,9 +108,9 @@ export const Events: React.FC = () => {
       }
 
       // Filtrar y limitar resultados
-      const limitedResults = results.slice(0, 30);
+      const limitedResults = results.slice(0, 32);
       setAsteroidsAndComets(limitedResults);
-      setHasMoreResults(results.length > 30);
+      setHasMoreResults(results.length > 32);
     } catch (err) {
       if (err instanceof Error) {
         setError(`Error fetching data: ${err.message}`);
