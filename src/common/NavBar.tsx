@@ -1,10 +1,10 @@
 import React from "react";
-
+import './NavBar.css';
 
 export const NavBar: React.FC<{}> = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand fs-2 fw-bold" style={{ marginLeft: '12px' }} href="/">NASA</a>
+      <a className="navbar-brand fs-2 fw-bold" href="/">NASA</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
       </button>
@@ -23,8 +23,19 @@ export const NavBar: React.FC<{}> = () => {
           <li className="nav-item">
             <a className="nav-link" href="/map">Map</a>
           </li> 
+          
         </ul>
       </div>
+      <li className="nav-item dropdown">
+        <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
+        </button>
+        <ul className="dropdown-menu dropdown-menu-dark">
+          <li><a className="dropdown-item" href="#">Login</a></li>
+          <li><a className="dropdown-item" href="#">My Events</a></li>
+          <li><a className="dropdown-item" href="#">Personalization</a></li>
+        </ul>
+      </li>
     </nav>
   );
 };

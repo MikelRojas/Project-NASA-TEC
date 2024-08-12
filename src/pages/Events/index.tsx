@@ -28,9 +28,6 @@ interface NearEarthObject {
   }>;
 }
 
-const isComet = (name: string): boolean => {
-  return name.startsWith("C/") || name.startsWith("P/") || name.includes("Comet");
-};
 
 export const Events: React.FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date('2024-08-01'));
