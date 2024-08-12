@@ -31,7 +31,7 @@ export const NavBar: React.FC<{}> = () => {
           Profile
         </button>
         <ul className="dropdown-menu dropdown-menu-dark">
-          <li><a className="dropdown-item" href="#">Login</a></li>
+          <li><a className="dropdown-item" href="/login">Login</a></li>
           <li><a className="dropdown-item" href="#">My Events</a></li>
           <li><a className="dropdown-item" href="#">Personalization</a></li>
         </ul>
