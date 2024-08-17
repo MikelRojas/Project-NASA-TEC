@@ -1,41 +1,71 @@
 import { useEffect, useState } from 'react';
 import { EclipseCard } from '../../components/EclipseCard';
+import AsteroidCard from '../../components/AsteroidCard';
 import './styles.css';
+
+const API_KEY = 'yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ';
+
+interface NearEarthObject {
+  id: string;
+  name: string;
+  nasa_jpl_url: string;
+  absolute_magnitude_h: number;
+  estimated_diameter: {
+    kilometers: {
+      estimated_diameter_min: number;
+      estimated_diameter_max: number;
+    };
+  };
+  is_potentially_hazardous_asteroid: boolean;
+  close_approach_data: Array<{
+    close_approach_date: string;
+    relative_velocity: {
+      kilometers_per_hour: string;
+    };
+    miss_distance: {
+      kilometers: string;
+    };
+  }>;
+}
+
 
 export const Events: React.FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date('2024-09-01'));
   const [endDate, setEndDate] = useState<Date>(new Date('2024-11-01'));
   const [selectedEvent, setSelectedEvent] = useState<string>('Asteroids and Comets');
-  const [eclipseType,setEclipseType] = useState<'solar'|'lunar'>('solar');
+  const [eclipseType, setEclipseType] = useState<'solar' | 'lunar'>('solar');
+  const [asteroidsAndComets, setAsteroidsAndComets] = useState<NearEarthObject[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [hasMoreResults, setHasMoreResults] = useState<boolean>(false);
 
   const handleEventSelection = (event: string) => {
     setSelectedEvent(event);
-    if(event==='Solar Eclipses'){
+    if (event === 'Solar Eclipses') {
       setEclipseType('solar');
-    }
-    else if(event==='Lunar Eclipses'){
+    } else if (event === 'Lunar Eclipses') {
       setEclipseType('lunar');
     }
   };
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStartDate = new Date(e.target.value);
-    if(newStartDate<minDate){
-      alert('End date cannot be earlier than 01-01-1901.');
-    }else if(newStartDate>endDate){
+    if (newStartDate < minDate) {
+      alert('Start date cannot be earlier than 01-01-1901.');
+    } else if (newStartDate > endDate) {
       alert('Start date cannot be later than end date.');
-    } else{
+    } else {
       setStartDate(newStartDate);
     }
   };
 
   const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEndDate = new Date(e.target.value);
-    if(newEndDate>maxDate){
+    if (newEndDate > maxDate) {
       alert('End date cannot be later than 01-12-2070.');
-    }else if (newEndDate<startDate){
+    } else if (newEndDate < startDate) {
       alert('End date cannot be earlier than start date.');
-    }else{
+    } else {
       setEndDate(newEndDate);
     }
   };
@@ -100,6 +130,7 @@ export const Events: React.FC = () => {
 
   const minDate = new Date("1901-01-01");
   const maxDate = new Date("2070-12-01");
+
   return (
     <div className="bg-image img-fluid">
       <div style={{ position: 'relative', minHeight: '100vh' }}>
@@ -107,22 +138,22 @@ export const Events: React.FC = () => {
         <div className="date-inputs">
           <label>
             Start Date:
-            <input 
-            type="date" 
-            value={startDate.toISOString().split('T')[0]} 
-            onChange={handleStartDateChange}
-            min = {minDate.toISOString().split('T')[0]}
-            max = {maxDate.toISOString().split('T')[0]}
-             />
+            <input
+              type="date"
+              value={startDate.toISOString().split('T')[0]}
+              onChange={handleStartDateChange}
+              min={minDate.toISOString().split('T')[0]}
+              max={maxDate.toISOString().split('T')[0]}
+            />
           </label>
           <label>
             End Date:
-            <input 
-            type="date" 
-            value={endDate.toISOString().split('T')[0]} 
-            onChange={handleEndDateChange} 
-            min = {minDate.toISOString().split('T')[0]}
-            max = {maxDate.toISOString().split('T')[0]}
+            <input
+              type="date"
+              value={endDate.toISOString().split('T')[0]}
+              onChange={handleEndDateChange}
+              min={minDate.toISOString().split('T')[0]}
+              max={maxDate.toISOString().split('T')[0]}
             />
           </label>
         </div>
@@ -148,18 +179,36 @@ export const Events: React.FC = () => {
           </button>
         </div>
         <div className='result-container'>
-        {(selectedEvent === 'Solar Eclipses' || selectedEvent === 'Lunar Eclipses') && (
-           <EclipseCard
-           startDate={startDate.toISOString().split('T')[0]}
-           endDate={endDate.toISOString().split('T')[0]}
-           type={eclipseType}
-         />
-          )}
-        {selectedEvent === 'Asteroids and Comets' && (
-            <div>No data available for Asteroids and Comets.</div>
+          {selectedEvent === 'Solar Eclipses' || selectedEvent === 'Lunar Eclipses' ? (
+            <EclipseCard
+              startDate={startDate.toISOString().split('T')[0]}
+              endDate={endDate.toISOString().split('T')[0]}
+              type={eclipseType}
+            />
+          ) : selectedEvent === 'Asteroids and Comets' ? (
+            <div>
+              {loading ? (
+                <p>Loading...</p>
+              ) : error ? (
+                <p>{error}</p>
+              ) : (
+                <div className="container mt-4">
+                  <div className="row">
+                    {asteroidsAndComets.map((asteroid) => (
+                      <div className="col-md-3 mb-3">
+                        <AsteroidCard key={asteroid.id} asteroid={asteroid} />
+                      </div>
+                    ))}
+                    {hasMoreResults && <p>To see more results you must select closer dates.</p>}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div>No data available for {selectedEvent}.</div>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
