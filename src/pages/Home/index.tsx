@@ -3,9 +3,9 @@ import './styles.css';
 
 export const Home: React.FC<{}> = () => {
     return (
+        <div className="d-flex flex-column justify-content-center align-items-center position-relative" style={{ height: '100vh', textAlign: 'center' }}>
         <div className="home-container">
             <h1>Home Page</h1>
-            
             <section className="home-description">
                 <h2>Description of the Page</h2>
                 <p>This application is designed to provide users with information about astronomical events and pictures. It includes various sections such as Astronomy Picture of the Day, Events, an interactive Map, and a personalized My Events feature.</p>
@@ -71,6 +71,7 @@ export const Home: React.FC<{}> = () => {
                 <h2>Purpose of the Application</h2>
                 <p>This application was created to provide users with easy access to information about astronomical events and images, enhancing their knowledge and interest in astronomy.</p>
             </section>
+            </div>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import { RouterLayout } from "./common/RouterLayout";
 import { AsteroidMap } from "./pages/Map";
 import { Events } from "./pages/Events";
 import { Login } from "./pages/Login";
+import { Configuration } from "./pages/Configuration";
 
 
 export const AppRouter: React.FC<{}> = () => {
@@ -17,6 +18,7 @@ export const AppRouter: React.FC<{}> = () => {
                 <Route path="/map" element={<AsteroidMap/>}> </Route>
                 <Route path="/events" element={<Events/>}> </Route>
                 <Route path="/login" element={<Login/>}> </Route>
+                <Route path="/configuration" element={<Configuration/>}> </Route>
             </Route>
             
         </Routes>

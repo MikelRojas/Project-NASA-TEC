@@ -53,7 +53,41 @@
     }
   
     .map-iframe-container {
-      height: 400px; /* Adjusted height for smaller screens */
+      height: 400px; /* Ajustar la altura para pantallas más pequeñas */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .map-container {
+      padding: 10px;
+    }
+  
+    .map-container h1 {
+      font-size: 1.2rem;
+    }
+  
+    .map-description {
+      font-size: 0.9rem;
+    }
+  
+    .map-iframe-container {
+      max-width: 90%;
+      height: 300px; /* Ajustar la altura para pantallas más pequeñas */
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .map-container h1 {
+      font-size: 1rem;
+    }
+  
+    .map-description {
+      font-size: 0.8rem;
+    }
+  
+    .map-iframe-container {
+      max-width: 85%;
+      height: 250px; /* Ajustar la altura para pantallas muy pequeñas */
     }
   }
   

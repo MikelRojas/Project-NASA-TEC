@@ -92,3 +92,79 @@
 .event-button:not(.active):hover {
   background-color: #ddd;
 }
+
+@media (max-width: 700px) {
+  .bg-image {
+    padding: 10px;
+  }
+
+  .result-container {
+    padding: 8px;
+    margin: 8px;
+  }
+
+  .card {
+    width: 70%; /* Reduce el ancho de las cartas */
+    margin: 8px auto;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-body {
+    font-size: 12px;
+  }
+
+  .card-img-top {
+    height: 200px; /* Reduce la altura de la imagen */
+  }
+
+  .event-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .date-inputs input {
+    padding: 4px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .bg-image {
+    padding: 8px;
+  }
+
+  .result-container {
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .card {
+    width: 60%; /* Reduce aún más el ancho de las cartas */
+    margin: 5px auto;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-body {
+    font-size: 10px;
+  }
+
+  .card-img-top {
+    height: 100px; /* Reduce aún más la altura de la imagen */
+  }
+
+  .event-button {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
+  .date-inputs input {
+    padding: 3px;
+    font-size: 10px;
+  }
+}

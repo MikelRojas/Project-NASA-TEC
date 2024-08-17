@@ -125,10 +125,43 @@ html, body {
   .home-container {
     max-width: 96%;
   }
+
+  .home-description, .home-manual, .home-links, .home-developers, .home-purpose {
+    max-width: 90%;
+    margin: 10px auto;
+    padding: 8px;
+    border-radius: 15px;
+  }
+
+  #page-title {
+    max-width: 260px;
+    font-size: 1.6rem;
+    padding: 6px;
+  }
+
+  .manual-section h3 {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 400px) {
   .home-container {
     max-width: 94%;
+  }
+
+  .home-description, .home-manual, .home-links, .home-developers, .home-purpose {
+    max-width: 85%;
+    padding: 6px;
+    border-radius: 12px;
+  }
+
+  #page-title {
+    max-width: 220px;
+    font-size: 1.4rem;
+    padding: 4px;
+  }
+
+  .manual-section h3 {
+    font-size: 0.9rem;
   }
 }
