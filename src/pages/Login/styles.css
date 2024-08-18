@@ -1,0 +1,64 @@
+.bg-image {
+    color: rgb(0, 0, 0);
+    height: 100vh;
+    background-image: url('/public/images/thumb-1920-923963.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+  }
+
+  .h4-text {
+    font-size: 20px;
+    color: slategray;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+  }
+
+  .main-class {
+    align-items: center;
+    height: 100%;
+  }
+
+  .button-switch {
+    background-color: rgb(56, 56, 58);
+    border-radius: 30px;
+    padding: 8px;
+    margin-left: 5px;
+    border-width: 0px;
+    color: white;
+  }
+
+  .user-image {
+    height: 120px;
+    width: 120px;
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .text-box {
+    background-color: #cccccc40;
+    border-color: slategray;
+    border-radius: 30px;
+    width: 100%;
+    padding: 15px;
+    border-width: 0px;
+    margin-bottom: 20px;
+  }
+  .text-box:focus {
+    outline: 1px solid gray;
+    box-shadow: 0 0 10px gray;
+  }
+
+  .button-form {
+    background-color: rgba(82, 82, 83);
+    border-color: slategray;
+    border-radius: 30px;
+    width: 50%;
+    padding: 15px;
+    border-width: 0px;
+    margin: 20px;
+    color: white;
+  }

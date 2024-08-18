@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
-
-interface EclipseData {
-  type: string;
-  date: string;
-  hour: string;
-  mode: string;
-  places: string;
-}
+import FavoriteButton from "./FavoriteButton";
+import {EclipseData} from '../common/interfaces';
 
 interface EclipseCardProps {
   startDate: string;
@@ -79,6 +73,7 @@ export const EclipseCard: React.FC<EclipseCardProps> = ({ startDate, endDate, ty
                     <p className="card-text">Date: {eclipse.date}</p>
                     <p className="card-text">Maximum Point: {eclipse.hour}</p>
                     <p className="card-text">Places: {eclipse.places}</p>
+                    <FavoriteButton></FavoriteButton>
                   </div>
                 </div>
               </div>
