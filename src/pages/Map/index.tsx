@@ -2,6 +2,7 @@ import React from "react";
 import './styles.css';
 
 export const AsteroidMap: React.FC<{}> = () => {
+
     return (
         <div className="map-container">
             <h1>Interactive Map</h1>

@@ -6,3 +6,12 @@
 .dropdown{
     margin-right: 50px;
 }
+
+.nav-item {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navbar-logo {
+    width: 60px;
+}
