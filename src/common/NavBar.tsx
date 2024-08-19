@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './NavBar.css';
+import {setUserInfo } from "./userInfo";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import appFirebase from "../credentials";
 
 export const NavBar: React.FC<{}> = () => {
+  const[userLog,setUserLog] = useState(false);
+
+  useEffect(() => {
+    const auth = getAuth(appFirebase);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await setUserInfo(user);
+        setUserLog(true);
+      } else {
+        setUserLog(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand fs-2 fw-bold" href="/">NASA</a>
@@ -28,12 +47,19 @@ export const NavBar: React.FC<{}> = () => {
       </div>
       <li className="nav-item dropdown">
         <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          Profile
+          Options
         </button>
         <ul className="dropdown-menu dropdown-menu-dark">
-          <li><a className="dropdown-item" href="/login">Login</a></li>
-          <li><a className="dropdown-item" href="#">My Events</a></li>
-          <li><a className="dropdown-item" href="/Configuration">Configuration</a></li>
+          {userLog ?(
+            <>
+            <li><a className="dropdown-item" href="#">My Events</a></li>
+            <li><a className="dropdown-item" href="/Configuration">Profile and settings</a></li>
+            </>
+          ):(
+            <>
+            <li><a className="dropdown-item" href="/login">Login</a></li>
+            </>
+          )}
         </ul>
       </li>
     </nav>

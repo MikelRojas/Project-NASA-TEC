@@ -3,9 +3,9 @@
 export interface UserInfo {
     name: string;
     email: string;
+    selectedEvents: Array<EclipseData | NearEarthObject>;
 }
-//selectedEvents: Array<EclipseData | NearEarthObject>;
-    //settings: UserSettings;
+
   
 export interface EclipseData {
     type: string;
@@ -37,6 +37,12 @@ export interface NearEarthObject {
       };
     }>;
 }
+
+
+
+
+
+//settings
   
 export interface UserSettings {
     language: string;
