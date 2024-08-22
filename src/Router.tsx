@@ -6,6 +6,8 @@ import { AsteroidMap } from "./pages/Map";
 import { Events } from "./pages/Events";
 import { Login } from "./pages/Login";
 import { Configuration } from "./pages/Configuration";
+import MyEvents from "./pages/MyEvents";
+
 
 
 export const AppRouter: React.FC<{}> = () => {
@@ -16,9 +18,9 @@ export const AppRouter: React.FC<{}> = () => {
                 <Route path="/picture" element={<AstronomyPicture/>}> </Route>
                 <Route path="/events" element={<Events/>}> </Route>
                 <Route path="/map" element={<AsteroidMap/>}> </Route>
-                <Route path="/events" element={<Events/>}> </Route>
                 <Route path="/login" element={<Login/>}> </Route>
                 <Route path="/configuration" element={<Configuration/>}> </Route>
+                <Route path="/myevents" element={<MyEvents/>}> </Route>
             </Route>
             
         </Routes>

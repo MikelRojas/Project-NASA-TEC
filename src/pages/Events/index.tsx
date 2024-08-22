@@ -1,38 +1,16 @@
 import { useEffect, useState } from 'react';
-import { EclipseCard } from '../../components/EclipseCard';
+import  EclipseCard  from '../../components/EclipseCard';
 import AsteroidCard from '../../components/AsteroidCard';
 import './styles.css';
+import { NearEarthObject } from '../../common/interfaces';
 
 const API_KEY = 'yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ';
-
-interface NearEarthObject {
-  id: string;
-  name: string;
-  nasa_jpl_url: string;
-  absolute_magnitude_h: number;
-  estimated_diameter: {
-    kilometers: {
-      estimated_diameter_min: number;
-      estimated_diameter_max: number;
-    };
-  };
-  is_potentially_hazardous_asteroid: boolean;
-  close_approach_data: Array<{
-    close_approach_date: string;
-    relative_velocity: {
-      kilometers_per_hour: string;
-    };
-    miss_distance: {
-      kilometers: string;
-    };
-  }>;
-}
 
 
 export const Events: React.FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date('2024-09-01'));
   const [endDate, setEndDate] = useState<Date>(new Date('2024-11-01'));
-  const [selectedEvent, setSelectedEvent] = useState<string>('Solar Eclipses');
+  const [selectedEvent, setSelectedEvent] = useState<string>('Asteroids and Comets');
   const [eclipseType, setEclipseType] = useState<'solar' | 'lunar'>('solar');
   const [asteroidsAndComets, setAsteroidsAndComets] = useState<NearEarthObject[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -159,7 +137,13 @@ export const Events: React.FC = () => {
         </div>
         <h2>Select Event:</h2>
         <div className="event-buttons">
-        <button
+          <button
+            className={`event-button ${selectedEvent === 'Asteroids and Comets' ? 'active' : ''}`}
+            onClick={() => handleEventSelection('Asteroids and Comets')}
+          >
+            Asteroids
+          </button>
+          <button
             className={`event-button ${selectedEvent === 'Solar Eclipses' ? 'active' : ''}`}
             onClick={() => handleEventSelection('Solar Eclipses')}
           >
@@ -170,12 +154,6 @@ export const Events: React.FC = () => {
             onClick={() => handleEventSelection('Lunar Eclipses')}
           >
             Lunar Eclipses
-          </button>
-          <button
-            className={`event-button ${selectedEvent === 'Asteroids and Comets' ? 'active' : ''}`}
-            onClick={() => handleEventSelection('Asteroids and Comets')}
-          >
-            Asteroids
           </button>
         </div>
         <div className='result-container'>
@@ -195,8 +173,8 @@ export const Events: React.FC = () => {
                 <div className="container mt-4">
                   <div className="row">
                     {asteroidsAndComets.map((asteroid) => (
-                      <div className="col-md-3 mb-3">
-                        <AsteroidCard key={asteroid.id} asteroid={asteroid} />
+                      <div className="col-md-3 mb-3" key={asteroid.id}>
+                        <AsteroidCard asteroid={asteroid} />
                       </div>
                     ))}
                     {hasMoreResults && <p>To see more results you must select closer dates.</p>}

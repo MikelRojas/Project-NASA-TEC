@@ -25,7 +25,24 @@ const EclipseImg = (type: string, mode: string): string => {
   }
 }
 
-export const EclipseCard: React.FC<EclipseCardProps> = ({ startDate, endDate, type }) => {
+export const GenerateEclipses: React.FC<EclipseData> = (eclipse)=>{
+  return(
+    <div className="col-md-3 mb-3">
+      <div className="card eclipse-card text-center">
+        <img src={EclipseImg(eclipse.type, eclipse.mode)} className="card-img-top card-image" alt={eclipse.mode} />
+        <div className="card-body">
+          <h5 className="card-title">{eclipse.mode} Eclipse</h5>
+          <p className="card-text">Date: {eclipse.date}</p>
+          <p className="card-text">Maximum Point: {eclipse.hour}</p>
+          <p className="card-text">Places: {eclipse.places}</p>
+          <FavoriteButton event={eclipse}></FavoriteButton>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const EclipseCard: React.FC<EclipseCardProps> = ({ startDate, endDate, type }) => {
   const [eclipseData, setEclipseData] = useState<EclipseData[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -86,3 +103,5 @@ export const EclipseCard: React.FC<EclipseCardProps> = ({ startDate, endDate, ty
     </div>
   );
 };
+export default EclipseCard;
+

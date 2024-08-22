@@ -8,22 +8,31 @@ interface Event {
 }
 
 export const FavoriteButton: React.FC<Event> = ({ event }) => {
-  const [isFavorite, setIsFavorite] = useState<boolean | null>(null); // Inicialmente null para indicar carga
+  const [isFavorite, setIsFavorite] = useState<boolean>(false); // Inicialmente false
 
+  // Función para verificar si el evento es favorito
   const checkIfFavorite = async () => {
-    const myEvents = await getEvets(); // Asegúrate de que getEvets() devuelva una promesa
-    if (myEvents) {
-      const isFav = myEvents.some(temEvent =>
-        ('id' in temEvent && 'id' in event && temEvent.id === event.id) ||
-        ('date' in temEvent && 'date' in event && temEvent.date === event.date)
-      );
-      setIsFavorite(isFav);
+    try {
+      const myEvents = await getEvets(); // Asegúrate de que getEvets() devuelva una promesa
+      if (myEvents) {
+        const isFav = myEvents.some(temEvent =>
+          ('id' in temEvent && 'id' in event && temEvent.id === event.id) ||
+          ('date' in temEvent && 'date' in event && temEvent.date === event.date)
+        );
+        setIsFavorite(isFav);
+      } else {
+        setIsFavorite(false);
+      }
+    } catch (error) {
+      console.error("Error checking if event is favorite: ", error);
+      setIsFavorite(false); // En caso de error, considera que el evento no es favorito
     }
   };
 
+  // Ejecutar checkIfFavorite cuando el componente se monta o 'event' cambia
   useEffect(() => {
     checkIfFavorite(); // Verifica si el evento está en la lista cuando el componente se monta
-  }, [event]);
+  }, [event]); // Dependencia en 'event' asegura que se vuelve a ejecutar si 'event' cambia
 
   const handleAddEvent = async () => {
     await addSelectedEvent(event);
@@ -35,11 +44,9 @@ export const FavoriteButton: React.FC<Event> = ({ event }) => {
     checkIfFavorite(); // Verifica si el evento está en la lista después de eliminarlo
   };
 
-  // Mientras `isFavorite` sea `null`, puedes mostrar un estado de carga o nada
-  if (isFavorite === null) {
-    checkIfFavorite();
-  }
+ 
 
+  // Mientras `isFavorite` sea false, puedes mostrar el botón adecuado
   return (
     <>
       {isFavorite ? (

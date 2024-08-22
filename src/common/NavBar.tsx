@@ -62,7 +62,7 @@ export const NavBar: React.FC<{}> = () => {
         <ul className="dropdown-menu dropdown-menu-dark">
           {userLog ?(
             <>
-            <li><a className="dropdown-item" href="#">My Events</a></li>
+            <li><a className="dropdown-item" href="/myevents">My Events</a></li>
             <li><a className="dropdown-item" href="/Configuration">Profile and settings</a></li>
             </>
           ):(

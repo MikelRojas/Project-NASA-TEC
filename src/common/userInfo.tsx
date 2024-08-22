@@ -105,6 +105,7 @@ export const getUserInfo = (): UserInfo | null => {
 
 export const getEvets = async (): Promise<Array<EclipseData | NearEarthObject> | undefined> => {
   if (currentUser) {
+    console.log(currentUser.selectedEvents);
     return currentUser.selectedEvents; // Asegúrate de que esta línea devuelve los datos correctamente
   }
   return undefined;
