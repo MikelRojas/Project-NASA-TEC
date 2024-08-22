@@ -1,6 +1,6 @@
 import React from 'react';
-import FavoriteButton from './FavoriteButton';
 import {NearEarthObject } from '../common/interfaces';
+import { FavoriteButton } from './FavoriteButton';
 
 interface AsteroidCardProps {
   asteroid: NearEarthObject;
@@ -27,7 +27,7 @@ const AsteroidCard: React.FC<AsteroidCardProps> = ({ asteroid }) => {
           </div>
         ))}
         <a href={asteroid.nasa_jpl_url} target="_blank" rel="noopener noreferrer" className="card-link">More Info</a>
-        <FavoriteButton></FavoriteButton>
+        <FavoriteButton event={asteroid}></FavoriteButton>
       </div>
     </div>
   );

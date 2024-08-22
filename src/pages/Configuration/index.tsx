@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css'; 
+import { getAuth, signOut } from 'firebase/auth';
+import { getUserInfo } from '../../common/userInfo';
 
 export const Configuration: React.FC = () => {
   const [language, setLanguage] = useState('English');
   const [theme, setTheme] = useState('Dark');
+  const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    const userInfo = getUserInfo();
+    if (userInfo) {
+      setUserName(userInfo.name);
+    }
+  }, []);
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(event.target.value);
@@ -13,12 +23,23 @@ export const Configuration: React.FC = () => {
     setTheme(event.target.value);
   };
 
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      console.log('User signed out');
+      // Redirigir al usuario a la página de login
+      window.location.href = '/';
+    }).catch((error) => {
+      console.error('Error signing out:', error);
+    });
+  };
+
   return (
     <div className="config-container">
       <h1>Welcome to the configuration</h1>
       <div className="user-profile">
         <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png" alt="User Profile" className="user-image" />
-        <p className="user-name">User Name</p>
+        <p className="user-name">{userName}</p>
       </div>
       <hr className="separator" />
       <div className="settings">
@@ -44,6 +65,7 @@ export const Configuration: React.FC = () => {
             <option value="Light">Light</option>
           </select>
         </div>
+        <button className='btn btn-primary' onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

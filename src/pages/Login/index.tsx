@@ -4,9 +4,11 @@ import appFirebase from "../../credentials";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { setUserInfo } from "../../common/userInfo";
+import { useNavigate } from "react-router-dom";
 
 export const Login: React.FC = () => {
   const [register, setRegister] = useState(false);
+  const navigate = useNavigate();
 
   const functAutentication = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,7 +17,9 @@ export const Login: React.FC = () => {
     const nombre = formData.get('name') as string;
     const correo = formData.get('email') as string;
     const password = formData.get('password') as string;
-
+    formData.set("name","Input Name");
+    formData.set("email","Input Email");
+    formData.set("password","Input Password");
     const auth = getAuth(appFirebase);
     const firestore = getFirestore(appFirebase);
 
@@ -32,6 +36,7 @@ export const Login: React.FC = () => {
             email: correo,
             selectedEvents: [] // Array vacío inicial
           });
+          navigate('/');
           console.log("User registered successfully");
         }
       } catch (error) {
@@ -48,8 +53,9 @@ export const Login: React.FC = () => {
           } else {
             console.log("No such document!");
           }
-          console.log("User signed in successfully");
           setUserInfo(userCredential.user);
+          navigate('/');
+          console.log("User signed in successfully");
         }
       } catch (error) {
         console.error('Error signing in user:', error);
