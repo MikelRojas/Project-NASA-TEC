@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EclipseData, NearEarthObject } from '../common/interfaces';
 import './FavoriteButton.css';
-import { addSelectedEvent, getEvets, removeSelectedEvent } from '../common/userInfo';
+import { addSelectedEvent, getEvets, removeSelectedEvent, getUserInfo } from '../common/userInfo';
+import { PopupMessage } from '../components/PopupMessage';
 
 interface Event {
   event: EclipseData | NearEarthObject;
 }
 
 export const FavoriteButton: React.FC<Event> = ({ event }) => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false); // Inicialmente false
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   // Función para verificar si el evento es favorito
   const checkIfFavorite = async () => {
     try {
-      const myEvents = await getEvets(); // Asegúrate de que getEvets() devuelva una promesa
+      const myEvents = await getEvets();
       if (myEvents) {
         const isFav = myEvents.some(temEvent =>
           ('id' in temEvent && 'id' in event && temEvent.id === event.id) ||
@@ -25,28 +28,35 @@ export const FavoriteButton: React.FC<Event> = ({ event }) => {
       }
     } catch (error) {
       console.error("Error checking if event is favorite: ", error);
-      setIsFavorite(false); // En caso de error, considera que el evento no es favorito
+      setIsFavorite(false);
     }
   };
 
-  // Ejecutar checkIfFavorite cuando el componente se monta o 'event' cambia
   useEffect(() => {
     checkIfFavorite(); // Verifica si el evento está en la lista cuando el componente se monta
-  }, [event]); // Dependencia en 'event' asegura que se vuelve a ejecutar si 'event' cambia
+  }, [event]);
 
   const handleAddEvent = async () => {
-    await addSelectedEvent(event);
-    checkIfFavorite(); // Verifica si el evento está en la lista después de agregarlo
+    const user = getUserInfo();
+    if (user) {
+      await addSelectedEvent(event);
+      checkIfFavorite(); // Verifica si el evento está en la lista después de agregarlo
+    } else {
+      setPopupMessage("To add an event to favorites, you must be registered.");
+      setShowPopup(true);
+    }
   };
 
   const handleRemoveEvent = async () => {
-    await removeSelectedEvent(event);
-    checkIfFavorite(); // Verifica si el evento está en la lista después de eliminarlo
+    if (getUserInfo()) {
+      await removeSelectedEvent(event);
+      checkIfFavorite(); // Verifica si el evento está en la lista después de eliminarlo
+    } else {
+      setPopupMessage("To remove an event from favorites, you must be registered.");
+      setShowPopup(true);
+    }
   };
 
- 
-
-  // Mientras `isFavorite` sea false, puedes mostrar el botón adecuado
   return (
     <>
       {isFavorite ? (
@@ -57,6 +67,13 @@ export const FavoriteButton: React.FC<Event> = ({ event }) => {
         <button className="image-button" onClick={handleAddEvent}>
           <img src="/images/gray_heart.png" alt="Add to Favorites" />
         </button>
+      )}
+      {showPopup && popupMessage && (
+        <PopupMessage
+          title="Action Required"
+          message={popupMessage}
+          onClose={() => setShowPopup(false)}
+        />
       )}
     </>
   );
