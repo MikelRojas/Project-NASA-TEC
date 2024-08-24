@@ -76,7 +76,7 @@ export const AstronomyPicture: React.FC<{}> = () => {
       return (
         <div className="bg-image img-fluid">
             <div style={{ position: 'relative',minHeight: '100vh'}}>
-                <h1 id="page-title">Image Of The Day</h1>
+                <h1>Image Of The Day</h1>
             
                 <button id="calendar" onClick={() => setShowCalendar(!showCalendar)}>
                     Select date

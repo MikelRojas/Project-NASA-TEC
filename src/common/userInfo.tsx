@@ -3,7 +3,27 @@ import { UserInfo, EclipseData, NearEarthObject } from './interfaces';
 import { getFirestore, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 import appFirebase from '../credentials';
 
-export let currentUser: UserInfo | null = null;
+
+// Función para cargar currentUser desde sessionStorage
+export const loadUserFromSessionStorage = (): UserInfo | null => {
+  const userJson = sessionStorage.getItem('currentUser');
+  if (userJson) {
+    return JSON.parse(userJson) as UserInfo;
+  }
+  return null;
+};
+
+export let currentUser: UserInfo | null = loadUserFromSessionStorage();
+
+
+// Función para guardar currentUser en sessionStorage
+export const saveUserToSessionStorage = (user: UserInfo | null) => {
+  if (user) {
+    sessionStorage.setItem('currentUser', JSON.stringify(user));
+  } else {
+    sessionStorage.removeItem('currentUser');
+  }
+};
 
 export const setUserInfo = async (user: User | null) => {
   const firestore = getFirestore(appFirebase);
@@ -27,12 +47,14 @@ export const setUserInfo = async (user: User | null) => {
         };
         await setDoc(doc(firestore, "users", email), currentUser); // Crear documento si no existe
       }
+      saveUserToSessionStorage(currentUser); // Guardar en sessionStorage después de actualizar currentUser
       console.log(currentUser);
     } else {
       console.error("User email is null");
     }
   } else {
     currentUser = null;
+    saveUserToSessionStorage(currentUser); // Remover de sessionStorage si user es null
   }
 };
 
@@ -56,6 +78,7 @@ export const addSelectedEvent = async (event: EclipseData | NearEarthObject) => 
         selectedEvents: currentUser.selectedEvents
       });
 
+      saveUserToSessionStorage(currentUser); // Guardar en sessionStorage después de actualizar selectedEvents
       console.log("Event added successfully");
     } catch (error) {
       console.error("Error adding event: ", error);
@@ -89,6 +112,7 @@ export const removeSelectedEvent = async (event: EclipseData | NearEarthObject) 
           selectedEvents: updatedEvents
         });
 
+        saveUserToSessionStorage(currentUser); // Guardar en sessionStorage después de actualizar selectedEvents
         console.log("Event removed successfully");
       } else {
         console.error("User document does not exist, cannot remove event");
@@ -110,7 +134,6 @@ export const getEvets = async (): Promise<Array<EclipseData | NearEarthObject> |
   }
   return undefined;
 };
-
 
 
 

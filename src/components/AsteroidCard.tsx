@@ -1,12 +1,54 @@
 import React from 'react';
-import {NearEarthObject } from '../common/interfaces';
+import { NearEarthObject } from '../common/interfaces';
 import { FavoriteButton } from './FavoriteButton';
+import { useNavigate } from 'react-router-dom';
 
 interface AsteroidCardProps {
   asteroid: NearEarthObject;
 }
 
 const AsteroidCard: React.FC<AsteroidCardProps> = ({ asteroid }) => {
+  const navigate = useNavigate();
+
+  // Función para generar la URL del mapa
+  const getFormattedSrc = () => {
+    if (!asteroid.name) {
+      console.error('Asteroid name is missing');
+      return '';
+    }
+
+    // Intentar separar el ID y el nombre
+    const match = asteroid.name.match(/(\d+)\s?\((.+)\)/);
+
+    if (match) {
+      const [_, asteroidId, asteroidName] = match;
+      const formattedAsteroidName = asteroidName.toLowerCase().replace(/ /g, '_');
+      return `https://eyes.nasa.gov/apps/asteroids/#/${asteroidId}_${formattedAsteroidName}`;
+    } else {
+      // Manejar nombres con formato simple
+      const simpleMatch = asteroid.name.match(/\((.+)\)/);
+      if (simpleMatch) {
+        const asteroidName = simpleMatch[1];
+        const formattedAsteroidName = asteroidName.toLowerCase().replace(/ /g, '_');
+        return `https://eyes.nasa.gov/apps/asteroids/#/${formattedAsteroidName}`;
+      }
+      
+      console.error('Asteroid name is not in the expected format:', asteroid.name);
+      return ''; // URL de respaldo o un valor predeterminado
+    }
+  };
+
+  const formattedSrc = getFormattedSrc();
+
+  // Función para manejar el clic y redirigir
+  const handleMoreInfoClick = () => {
+    if (formattedSrc) {
+      navigate(`/map?src=${encodeURIComponent(formattedSrc)}`);
+    } else {
+      console.warn('No valid URL format available');
+    }
+  };
+
   return (
     <div className="card asteroid-card text-center">
       <img 
@@ -26,8 +68,8 @@ const AsteroidCard: React.FC<AsteroidCardProps> = ({ asteroid }) => {
             <p className="card-text"><strong>Miss Distance:</strong> {parseFloat(approach.miss_distance.kilometers).toFixed(2)} km</p>
           </div>
         ))}
-        <a href={asteroid.nasa_jpl_url} target="_blank" rel="noopener noreferrer" className="card-link">More Info</a>
-        <FavoriteButton event={asteroid}></FavoriteButton>
+        <button onClick={handleMoreInfoClick} className="btn btn-primary">More Info</button>
+        <FavoriteButton event={asteroid} />
       </div>
     </div>
   );

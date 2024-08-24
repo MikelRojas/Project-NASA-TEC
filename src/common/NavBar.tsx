@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './NavBar.css';
-import {setUserInfo } from "./userInfo";
+import { setUserInfo, loadUserFromSessionStorage } from "./userInfo";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import appFirebase from "../credentials";
 
 export const NavBar: React.FC<{}> = () => {
-  const[userLog,setUserLog] = useState(false);
+  const [userLog, setUserLog] = useState<boolean>(() => {
+    const user = loadUserFromSessionStorage(); // Cargar estado de autenticación desde sessionStorage
+    return user !== null;
+  });
   const [activeRoute] = useState(window.location.pathname);
-  
+
   useEffect(() => {
     const auth = getAuth(appFirebase);
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -60,12 +63,12 @@ export const NavBar: React.FC<{}> = () => {
           Options
         </button>
         <ul className="dropdown-menu dropdown-menu-dark">
-          {userLog ?(
+          {userLog ? (
             <>
             <li><a className="dropdown-item" href="/myevents">My Events</a></li>
             <li><a className="dropdown-item" href="/Configuration">Profile and settings</a></li>
             </>
-          ):(
+          ) : (
             <>
             <li><a className="dropdown-item" href="/login">Login</a></li>
             </>

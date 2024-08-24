@@ -17,7 +17,7 @@ export const AppRouter: React.FC<{}> = () => {
                 <Route path="/" element={<Home/>}> </Route>
                 <Route path="/picture" element={<AstronomyPicture/>}> </Route>
                 <Route path="/events" element={<Events/>}> </Route>
-                <Route path="/map" element={<AsteroidMap/>}> </Route>
+                <Route path="/map" element={<AsteroidMap />} />
                 <Route path="/login" element={<Login/>}> </Route>
                 <Route path="/configuration" element={<Configuration/>}> </Route>
                 <Route path="/myevents" element={<MyEvents/>}> </Route>

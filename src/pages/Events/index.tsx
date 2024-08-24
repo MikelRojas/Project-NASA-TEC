@@ -10,7 +10,7 @@ const API_KEY = 'yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ';
 export const Events: React.FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date('2024-09-01'));
   const [endDate, setEndDate] = useState<Date>(new Date('2024-11-01'));
-  const [selectedEvent, setSelectedEvent] = useState<string>('Asteroids and Comets');
+  const [selectedEvent, setSelectedEvent] = useState<string>('Solar Eclipses');
   const [eclipseType, setEclipseType] = useState<'solar' | 'lunar'>('solar');
   const [asteroidsAndComets, setAsteroidsAndComets] = useState<NearEarthObject[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -138,12 +138,6 @@ export const Events: React.FC = () => {
         <h2>Select Event:</h2>
         <div className="event-buttons">
           <button
-            className={`event-button ${selectedEvent === 'Asteroids and Comets' ? 'active' : ''}`}
-            onClick={() => handleEventSelection('Asteroids and Comets')}
-          >
-            Asteroids
-          </button>
-          <button
             className={`event-button ${selectedEvent === 'Solar Eclipses' ? 'active' : ''}`}
             onClick={() => handleEventSelection('Solar Eclipses')}
           >
@@ -154,6 +148,12 @@ export const Events: React.FC = () => {
             onClick={() => handleEventSelection('Lunar Eclipses')}
           >
             Lunar Eclipses
+          </button>
+          <button
+            className={`event-button ${selectedEvent === 'Asteroids and Comets' ? 'active' : ''}`}
+            onClick={() => handleEventSelection('Asteroids and Comets')}
+          >
+            Asteroids
           </button>
         </div>
         <div className='result-container'>

@@ -10,7 +10,7 @@
 }
 
 .result-container {
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 15px;
@@ -51,6 +51,7 @@
   font-size: 20px;
   font-weight: bold;
 }
+
 
 .date-inputs input {
   background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
