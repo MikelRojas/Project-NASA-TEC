@@ -1,5 +1,5 @@
 import { User } from 'firebase/auth';
-import { UserInfo, EclipseData, NearEarthObject } from './interfaces';
+import { UserInfo, EclipseData, NearEarthObject,UserSettings} from './interfaces';
 import { getFirestore, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 import appFirebase from '../credentials';
 
@@ -37,13 +37,15 @@ export const setUserInfo = async (user: User | null) => {
         currentUser = {
           name: user.displayName || "",
           email: email,
-          selectedEvents: userData.selectedEvents || []
+          selectedEvents: userData.selectedEvents || [],
+          settings: userData.settings || {language:"en",color:"dark"}
         };
       } else {
         currentUser = {
           name: user.displayName || "",
           email: email,
-          selectedEvents: []
+          selectedEvents: [],
+          settings:{language:"en",color:"dark"}
         };
         await setDoc(doc(firestore, "users", email), currentUser); // Crear documento si no existe
       }
@@ -138,7 +140,7 @@ export const getEvets = async (): Promise<Array<EclipseData | NearEarthObject> |
 
 
 
-/*export const setUserSettings = (settings: UserSettings) => {
+export const setUserSettings = (settings: UserSettings) => {
   if (currentUser) {
     currentUser.settings = settings;
   }
@@ -147,4 +149,4 @@ export const getEvets = async (): Promise<Array<EclipseData | NearEarthObject> |
 export const getUserSettings = (): UserSettings | null => {
   return currentUser ? currentUser.settings : null;
 };
-*/
+
