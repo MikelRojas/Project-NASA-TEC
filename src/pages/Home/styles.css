@@ -22,21 +22,9 @@ html, body {
   min-height: 100vh; /* Asegura que cubra al menos el 100% de la altura del viewport */
 }
 
-#page-title {
-  text-align: center;
-  text-shadow: 
-  -1px -1px 0 #000,  
-   1px -1px 0 #000,
-  -1px  1px 0 #000,
-   1px  1px 0 #000; 
-  background: rgba(82, 82, 83, 0.8);
-  border-radius: 20px;
-  margin: 0 auto;
-  padding: 8px;
-  width: 100%;
-  max-width: 310px;
+.title{
+  color: white !important;
 }
-
 .home-description, .home-manual, .home-links, .home-developers, .home-purpose {
   background: rgba(82, 82, 83, 0.8);
   padding: 10px;

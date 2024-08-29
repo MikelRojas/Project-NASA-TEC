@@ -140,13 +140,44 @@ export const getEvets = async (): Promise<Array<EclipseData | NearEarthObject> |
 
 
 
-export const setUserSettings = (settings: UserSettings) => {
+export const setColor = async (color: string) => {
   if (currentUser) {
-    currentUser.settings = settings;
+    currentUser.settings.color = color;
+    saveUserToSessionStorage(currentUser);
+
+    const firestore = getFirestore(appFirebase);
+    const userDocRef = doc(firestore, "users", currentUser.email);
+
+    try {
+      await updateDoc(userDocRef, {
+        "settings.color": color
+      });
+      console.log("Color updated successfully");
+    } catch (error) {
+      console.error("Error updating color: ", error);
+    }
   }
 };
 
-export const getUserSettings = (): UserSettings | null => {
-  return currentUser ? currentUser.settings : null;
+export const setLanguage = async (language: string) => {
+  if (currentUser) {
+    currentUser.settings.language = language;
+    saveUserToSessionStorage(currentUser);
+
+    const firestore = getFirestore(appFirebase);
+    const userDocRef = doc(firestore, "users", currentUser.email);
+
+    try {
+      await updateDoc(userDocRef, {
+        "settings.language": language
+      });
+      console.log("Language updated successfully");
+    } catch (error) {
+      console.error("Error updating language: ", error);
+    }
+  }
 };
 
+export const getUserSettings = (): UserSettings | undefined => {
+  return currentUser?.settings;
+};

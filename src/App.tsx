@@ -4,6 +4,7 @@ import appFirebase from "./credentials";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { setUserInfo } from "./common/userInfo";
+import { TranslationProvider } from 'react-google-multi-lang';
 
 const auth = getAuth(appFirebase);
 
@@ -26,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className="MyPage">
+    <div className="MyPage">     
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles.css';
+import { withTranslation } from 'react-google-multi-lang';
+import { loadUserFromSessionStorage } from '../../common/userInfo';
 
-export const Home: React.FC<{}> = () => {
-    return (
-        <div className="d-flex flex-column justify-content-center align-items-center position-relative" style={{ height: '100vh', textAlign: 'center' }}>
-        <div className="home-container">
-            <h1>Home Page</h1>
+const Home: React.FC<{}> = () => {
+  // Aplicar el tema al cargar la página
+  useEffect(() => {
+    const user = loadUserFromSessionStorage();
+    
+    // Verificar si hay un usuario y su configuración de color
+    if (user && user.settings.color === 'light') {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+  }, []);
+
+  return (
+    <div className="d-flex flex-column justify-content-center align-items-center position-relative" style={{ height: '100vh', textAlign: 'center' }}>
+      <div className="home-container">
+        <h1 className='title'>Home Page</h1>
             <section className="home-description">
                 <h2>Description of the Page</h2>
                 <p>This application is designed to provide users with information about astronomical events and pictures. It includes various sections such as Astronomy Picture of the Day, Events, an interactive Map, and a personalized My Events feature.</p>
@@ -75,3 +89,5 @@ export const Home: React.FC<{}> = () => {
         </div>
     );
 };
+
+export default withTranslation(Home);

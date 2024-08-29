@@ -1,3 +1,6 @@
+.container {
+  text-align: center;
+}
 .result-container {
     padding: 10px;
     margin: 10px;
@@ -5,3 +8,8 @@
     border-radius: 15px;
   }
   
+  .title {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }

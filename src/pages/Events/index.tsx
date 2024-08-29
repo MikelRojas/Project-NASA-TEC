@@ -112,7 +112,7 @@ export const Events: React.FC = () => {
   return (
     <div className="bg-image img-fluid">
       <div style={{ position: 'relative', minHeight: '100vh' }}>
-        <h1>Astronomy Events</h1>
+        <h1 className='title'>Astronomy Events</h1>
         <div className="date-inputs">
           <label>
             Start Date:

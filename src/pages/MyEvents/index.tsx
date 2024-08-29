@@ -34,7 +34,7 @@ const MyEvents: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>Welcome to your Astronomy Events</h1>
+      <h1 className='title' >Welcome to your Astronomy Events</h1>
       <div className='result-container'>
         <div className='row'>
           {events.map((event, index) => (
