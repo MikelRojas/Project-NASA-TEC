@@ -6,8 +6,10 @@ import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { setUserInfo } from "../../common/userInfo";
 import { useNavigate } from "react-router-dom";
 import { PopupMessage } from "../../components/PopupMessage";
+import { useTranslation } from 'react-i18next'; 
 
 export const Login: React.FC = () => {
+  const [t] = useTranslation("global");
   const [register, setRegister] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);

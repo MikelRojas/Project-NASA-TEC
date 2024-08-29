@@ -3,11 +3,13 @@ import  EclipseCard  from '../../components/EclipseCard';
 import AsteroidCard from '../../components/AsteroidCard';
 import './styles.css';
 import { NearEarthObject } from '../../common/interfaces';
+import { useTranslation } from 'react-i18next'; 
 
 const API_KEY = 'yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ';
 
 
 export const Events: React.FC = () => {
+  const [t] = useTranslation("global");
   const [startDate, setStartDate] = useState<Date>(new Date('2024-09-01'));
   const [endDate, setEndDate] = useState<Date>(new Date('2024-11-01'));
   const [selectedEvent, setSelectedEvent] = useState<string>('Solar Eclipses');
@@ -112,10 +114,10 @@ export const Events: React.FC = () => {
   return (
     <div className="bg-image img-fluid">
       <div style={{ position: 'relative', minHeight: '100vh' }}>
-        <h1 className='title'>Astronomy Events</h1>
+        <h1>{t("events.Title")}</h1>
         <div className="date-inputs">
           <label>
-            Start Date:
+            {t("events.StartDate")}
             <input
               type="date"
               value={startDate.toISOString().split('T')[0]}
@@ -125,7 +127,7 @@ export const Events: React.FC = () => {
             />
           </label>
           <label>
-            End Date:
+            {t("events.EndDate")}
             <input
               type="date"
               value={endDate.toISOString().split('T')[0]}
@@ -135,25 +137,25 @@ export const Events: React.FC = () => {
             />
           </label>
         </div>
-        <h2>Select Event:</h2>
+        <h2>{t("events.SelectEvent")}</h2>
         <div className="event-buttons">
           <button
             className={`event-button ${selectedEvent === 'Solar Eclipses' ? 'active' : ''}`}
             onClick={() => handleEventSelection('Solar Eclipses')}
           >
-            Solar Eclipses
+            {t("events.SolarEclipses")}
           </button>
           <button
             className={`event-button ${selectedEvent === 'Lunar Eclipses' ? 'active' : ''}`}
             onClick={() => handleEventSelection('Lunar Eclipses')}
           >
-            Lunar Eclipses
+            {t("events.LunarEclipses")}
           </button>
           <button
             className={`event-button ${selectedEvent === 'Asteroids and Comets' ? 'active' : ''}`}
             onClick={() => handleEventSelection('Asteroids and Comets')}
           >
-            Asteroids
+            {t("events.Asteroids")}
           </button>
         </div>
         <div className='result-container'>
@@ -166,7 +168,7 @@ export const Events: React.FC = () => {
           ) : selectedEvent === 'Asteroids and Comets' ? (
             <div>
               {loading ? (
-                <p>Loading...</p>
+                <p>{t("events.Loading")}.</p>
               ) : error ? (
                 <p>{error}</p>
               ) : (
@@ -177,14 +179,13 @@ export const Events: React.FC = () => {
                         <AsteroidCard asteroid={asteroid} />
                       </div>
                     ))}
-                    {hasMoreResults && <p>To see more results you must select closer dates.</p>}
+                    {hasMoreResults && <p>{t("events.MoreResults")}</p>}
                   </div>
                 </div>
               )}
             </div>
           ) : (
-            <div>No data available for {selectedEvent}.</div>
-          )}
+          <div>{t("events.NoData", { event: selectedEvent })}</div>)}
         </div>
       </div>
     </div>

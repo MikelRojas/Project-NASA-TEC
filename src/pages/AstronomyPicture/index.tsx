@@ -2,6 +2,8 @@ import { useEffect, useState, useRef} from "react";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles.css';
+import { useTranslation } from 'react-i18next'; 
+
 
 interface APOD{
     date:string,
@@ -11,6 +13,7 @@ interface APOD{
 }
 
 export const AstronomyPicture: React.FC<{}> = () => {
+    const [t] = useTranslation("global");
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [data, setData] = useState<APOD | null>(null);
@@ -75,41 +78,39 @@ export const AstronomyPicture: React.FC<{}> = () => {
 
       return (
         <div className="bg-image img-fluid">
-            <div style={{ position: 'relative',minHeight: '100vh'}}>
-                <h1 className='title'>Image Of The Day</h1>
-            
+            <div style={{ position: 'relative', minHeight: '100vh' }}>
+                <h1>{t("imageOfTheDay.Title")}</h1>
+
                 <button id="calendar" onClick={() => setShowCalendar(!showCalendar)}>
-                    Select date
+                    {t("imageOfTheDay.SelectDate")}
                 </button>
                 {showCalendar && (
                     <div className="calendar-overlay" ref={calendarRef}>
                         <DatePicker
-                        selected={selectedDate}
-                        onChange={handleDateChange}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        inline
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
+                            selected={selectedDate}
+                            onChange={handleDateChange}
+                            minDate={new Date()}
+                            maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
+                            inline
+                            showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
                         />
                     </div>
                 )}
                 {selectedDate && (
                     <>
-                        <h2 id="date-select">Date: {selectedDate.toDateString()}</h2>
+                        <h2 id="date-select">{t("imageOfTheDay.SelectedDate", { date: selectedDate.toDateString() })}</h2>
                         <div className="flex-container">
                             <div className="container-text">
                                 <h1>{data?.title}</h1>
                                 <p>{data?.explanation}</p>
                             </div>
-                            <img src={data?.url} alt={data?.title} className="img-fluid img-custom-size" />      
+                            <img src={data?.url} alt={data?.title} className="img-fluid img-custom-size" />
                         </div>
                     </>
-                )} 
-
+                )}
             </div>
         </div>
-        
-      );
+    );
 };
