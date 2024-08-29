@@ -4,8 +4,11 @@ import { getEvets } from '../../common/userInfo';
 import { GenerateEclipses } from '../../components/EclipseCard';
 import AsteroidCard from '../../components/AsteroidCard';
 import { EclipseData, NearEarthObject } from '../../common/interfaces';
+import { useTranslation } from 'react-i18next'; 
+
 
 const MyEvents: React.FC = () => {
+  const [t] = useTranslation("global");
   const [events, setEvents] = useState<(EclipseData | NearEarthObject)[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +37,7 @@ const MyEvents: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>Welcome to your Astronomy Events</h1>
+      <h1>{t("header.Welcome_myEvents")}</h1>
       <div className='result-container'>
         <div className='row'>
           {events.map((event, index) => (
