@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+
 import './styles.css';
+import { useTranslation } from 'react-i18next';
 
 export const Home: React.FC<{}> = () => {
+    const [t] = useTranslation("global");
+    
     return (
         <div className="d-flex flex-column justify-content-center align-items-center position-relative" style={{ height: '100vh', textAlign: 'center' }}>
         <div className="home-container">
-            <h1>Home Page</h1>
-            <section className="home-description">
-                <h2>Description of the Page</h2>
-                <p>This application is designed to provide users with information about astronomical events and pictures. It includes various sections such as Astronomy Picture of the Day, Events, an interactive Map, and a personalized My Events feature.</p>
-            </section>
+        <h1>{t("header.Home")}</h1>
+                <section className="home-description">
+                    <h2>{t("header.Description")}</h2>
+                    <p>{t("header.Description_text")}</p>
+                </section>
 
                 <section className="home-manual">
                     <h2>{t("header.Manual")}</h2>

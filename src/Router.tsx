@@ -1,5 +1,5 @@
 import { Route,Routes } from "react-router-dom"
-import  Home  from "./pages/Home";
+import  {Home}  from "./pages/Home"
 import { AstronomyPicture } from "./pages/AstronomyPicture";
 import { RouterLayout } from "./common/RouterLayout";
 import { AsteroidMap } from "./pages/Map";
