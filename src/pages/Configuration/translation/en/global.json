@@ -16,12 +16,12 @@
         "Navigation_Bar_Description": "The navigation bar allows users to easily switch between different sections of the application.",
         "Map": "Map",
         "Map_Description": "The map feature lets users interact with an interactive universe map, where they can click on planets or other celestial bodies to see them as they were in the past or will be in the future according to NASA data.",
-        "Day": "Day",
-        "Day_Description": "The Day section provides daily information and updates about astronomical events.",
+        "Day": "Imagen of the day",
+        "Day_Description": "The imagen of the day section provides daily information and updates about astronomical events.",
         "Events": "Events",
-        "Events_Description": "In the Events section, users can view upcoming astronomical events such as solar eclipses, lunar eclipses, comets, and asteroids. Users can search for events based on categories and date ranges.",
+        "Events_Description": "In the Events section, users can view upcoming astronomical events such as solar eclipses, lunar eclipses, and asteroids. Users can search for events based on categories and date ranges.",
         "My_Events": "My Events",
-        "My_Events_Description": "The My Events feature allows users to save their favorite events and receive notifications when these events occur.",
+        "My_Events_Description": "The My Events feature allows users to save their favorite events.",
         "Login": "Login",
         "Login_Description": "Users can log in to the application to access personalized features and save their preferences.",
         "Quick_Links": "Quick Links",
@@ -31,12 +31,19 @@
         "My_Events_Link": "My Events",
         "Login_Link": "Login",
         "Developer_Information": "Developer Information",
-        "Developer_Info_Text": "If you need support or have any questions, please contact the developers.",
+        "Developer_Info_Text": "If you need support or have any questions, please contact the developers: \n Mikel Rojas \n Correo:mikelarr2004@gmail.com \n Jojashley Chaves \n Correo:jojashley@hotmail.com ",
         "Purpose": "Purpose of the Application",
         "Purpose_Text": "This application was created to provide users with easy access to information about astronomical events and images, enhancing their knowledge and interest in astronomy.",
         "Interactive":"Interactive Map",
         "Map_text":"Explore the interactive map to discover celestial bodies and their positions in the universe. Click on planets or other objects to learn more about them.",
-        "Welcome_myEvents":"Welcome to your Astronomy Events"
+        "Welcome_myEvents":"Welcome to your Astronomy Events",
+        "H":"Home",
+        "Imagen":"Imagen of the day",
+        "EA":"Eclipses/Asteroids",
+        "Universe":"Universe",
+        "Options":"Options",
+        "Profile":"Profile and settings",
+        "Profile-d":"In the profile and settings section you can see information about your profile and you can make changes to the page"
     },
     "imageOfTheDay": {
         "Title": "Image Of The Day",
@@ -61,5 +68,19 @@
         "Loading": "Loading...",
         "MoreResults": "To see more results you must select closer dates.",
         "NoData": "No data available for {{event}}."
+    },
+    "asteroid":{
+        "Magnitude":"Magnitude",
+        "Diameter":"Diameter",
+        "Hazardous":"Hazardous",
+        "Close":"Close Approach Date:",
+        "Velocity":"Velocity",
+        "Miss":"Miss Distance:"
+    },
+    "eclipse":{
+        "Eclipse":"Eclipse",
+        "Date":"Date:",
+        "Maximum":"Maximum Point:",
+        "Places":"Places:"
     }
 }

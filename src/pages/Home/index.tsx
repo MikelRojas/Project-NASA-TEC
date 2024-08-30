@@ -19,20 +19,17 @@ export const Home: React.FC<{}> = () => {
                     <div className="manual-section">
                         <h3>{t("header.Navigation_Bar")}</h3>
                         <p>{t("header.Navigation_Bar_Description")}</p>
-                        {/* Add image for Navigation Bar */}
-                        <img src="path_to_navigation_bar_image" alt={t("header.Navigation_Bar")} />
+                        <img src="/public/images/Navbar.png" alt={t("header.Navigation_Bar")} />
                     </div>
                     <div className="manual-section">
                         <h3>{t("header.Map")}</h3>
                         <p>{t("header.Map_Description")}</p>
-                        {/* Add image for Map */}
-                        <img src="path_to_map_image" alt={t("header.Map")} />
+                        <img src="/public/images/Map.png" alt={t("header.Map")} />
                     </div>
                     <div className="manual-section">
                         <h3>{t("header.Day")}</h3>
                         <p>{t("header.Day_Description")}</p>
-                        {/* Add image for Day */}
-                        <img src="path_to_day_image" alt={t("header.Day")} />
+                        <img src="/public/images/Day.png" alt={t("header.Day")} />
                     </div>
                     <div className="manual-section">
                         <h3>{t("header.Events")}</h3>
@@ -52,16 +49,22 @@ export const Home: React.FC<{}> = () => {
                         {/* Add image for Login */}
                         <img src="path_to_login_image" alt={t("header.Login")} />
                     </div>
+                    <div className="manual-section">
+                        <h3>{t("header.Profile")}</h3>
+                        <p>{t("header.Profile-d")}</p>
+                        <img src="/public/images/Configuration.png" alt={t("header.Profile")} />
+                    </div>
                 </section>
 
                 <section className="home-links">
                     <h2>{t("header.Quick_Links")}</h2>
                     <ul>
-                        <li><a href="#astronomy-picture">{t("header.Astronomy_Picture")}</a></li>
-                        <li><a href="#events">{t("header.Events_Link")}</a></li>
-                        <li><a href="#map">{t("header.Map_Link")}</a></li>
-                        <li><a href="#my-events">{t("header.My_Events_Link")}</a></li>
-                        <li><a href="#login">{t("header.Login_Link")}</a></li>
+                        <li><a href="/picture">{t("header.Astronomy_Picture")}</a></li>
+                        <li><a href="/events">{t("header.Events_Link")}</a></li>
+                        <li><a href="/map">{t("header.Map_Link")}</a></li>
+                        <li><a href="/myevents">{t("header.My_Events_Link")}</a></li>
+                        <li><a href="/login">{t("header.Login_Link")}</a></li>
+                        <li><a href="/Configuration">{t("header.Profile")}</a></li>
                     </ul>
                 </section>
 

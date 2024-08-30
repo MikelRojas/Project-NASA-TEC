@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {FavoriteButton} from "./FavoriteButton";
 import {EclipseData} from '../common/interfaces';
+import { useTranslation } from 'react-i18next'; 
+
 
 interface EclipseCardProps {
   startDate: string;
@@ -47,6 +49,7 @@ export const GenerateEclipses: React.FC<EclipseProps> = ({ eclipse }) => {
 };
 
 const EclipseCard: React.FC<EclipseCardProps> = ({ startDate, endDate, type }) => {
+  const [t] = useTranslation("global");
   const [eclipseData, setEclipseData] = useState<EclipseData[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -90,17 +93,17 @@ const EclipseCard: React.FC<EclipseCardProps> = ({ startDate, endDate, type }) =
                 <div className="card eclipse-card text-center">
                   <img src={EclipseImg(eclipse.type, eclipse.mode)} className="card-img-top card-image" alt={eclipse.mode} />
                   <div className="card-body">
-                    <h5 className="card-title">{eclipse.mode} Eclipse</h5>
-                    <p className="card-text">Date: {eclipse.date}</p>
-                    <p className="card-text">Maximum Point: {eclipse.hour}</p>
-                    <p className="card-text">Places: {eclipse.places}</p>
+                    <h5 className="card-title">{eclipse.mode} {t("eclipse.Eclipse")}</h5>
+                    <p className="card-text">{t("eclipse.Date")} {eclipse.date}</p>
+                    <p className="card-text">{t("eclipse.Maximum")} {eclipse.hour}</p>
+                    <p className="card-text">{t("eclipse.Places")} {eclipse.places}</p>
                     <FavoriteButton event={eclipse}></FavoriteButton>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>{t("events.Loading")}</p>
           )}
         </div>
       )}

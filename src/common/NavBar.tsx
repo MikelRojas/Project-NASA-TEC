@@ -4,6 +4,7 @@ import './NavBar.css';
 import { setUserInfo, loadUserFromSessionStorage, getUserSettings } from "./userInfo";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import appFirebase from "../credentials";
+import { useTranslation } from 'react-i18next'; 
 
 // Hook personalizado para manejar el tema
 const useTheme = () => {
@@ -21,6 +22,7 @@ const useTheme = () => {
 };
 
 export const NavBar: React.FC<{}> = () => {
+  const [t] = useTranslation("global");
   const [userLog, setUserLog] = useState<boolean>(() => {
     const user = loadUserFromSessionStorage();
     return user !== null;
@@ -67,39 +69,39 @@ export const NavBar: React.FC<{}> = () => {
         <ul className="navbar-nav fs-3 fw-bold">
           <li className="nav-item">
             <a className={`nav-link ${activeRoute === "/" ? "active" : ""}`} href="/">
-              Home
+              {t("header.H")}
             </a>
           </li>
           <li className="nav-item">
             <a className={`nav-link ${activeRoute === "/picture" ? "active" : ""}`} href="/picture">
-              Imagen of the day
+              {t("header.Imagen")}
             </a>
           </li>
           <li className="nav-item">
             <a className={`nav-link ${activeRoute === "/events" ? "active" : ""}`} href="/events">
-              Eclipses/Asteroids
+              {t("header.EA")}
             </a>
           </li> 
           <li className="nav-item">
             <a className={`nav-link ${activeRoute === "/map" ? "active" : ""}`} href="/map">
-              Universe
+              {t("header.Universe")}
             </a>
           </li>
         </ul>
       </div>
       <li className="nav-item dropdown">
         <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          Options
+          {t("header.Options")}
         </button>
         <ul className="dropdown-menu dropdown-menu-dark">
           {userLog ? (
             <>
-            <li><a className="dropdown-item" href="/myevents">My Events</a></li>
-            <li><a className="dropdown-item" href="/Configuration">Profile and settings</a></li>
+            <li><a className="dropdown-item" href="/myevents">{t("header.My_Events")}</a></li>
+            <li><a className="dropdown-item" href="/Configuration">{t("header.Profile")}</a></li>
             </>
           ) : (
             <>
-            <li><a className="dropdown-item" href="/login">Login</a></li>
+            <li><a className="dropdown-item" href="/login">{t("header.Login")}</a></li>
             </>
           )}
         </ul>

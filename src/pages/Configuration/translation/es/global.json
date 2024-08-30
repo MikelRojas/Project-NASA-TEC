@@ -16,12 +16,12 @@
         "Navigation_Bar_Description": "La barra de navegación permite a los usuarios cambiar fácilmente entre las diferentes secciones de la aplicación.",
         "Map": "Mapa",
         "Map_Description": "La función del mapa permite a los usuarios interactuar con un mapa interactivo del universo, donde pueden hacer clic en planetas u otros cuerpos celestes para verlos como eran en el pasado o cómo serán en el futuro según los datos de la NASA.",
-        "Day": "Día",
-        "Day_Description": "La sección Día proporciona información diaria y actualizaciones sobre eventos astronómicos.",
+        "Day": "Imagen del día",
+        "Day_Description": "La sección la imagen del día proporciona información diaria y actualizaciones sobre eventos astronómicos.",
         "Events": "Eventos",
-        "Events_Description": "En la sección Eventos, los usuarios pueden ver los próximos eventos astronómicos como eclipses solares, eclipses lunares, cometas y asteroides. Los usuarios pueden buscar eventos basados en categorías y rangos de fechas.",
+        "Events_Description": "En la sección Eventos, los usuarios pueden ver los próximos eventos astronómicos como eclipses solares, eclipses lunares y asteroides. Los usuarios pueden buscar eventos basados en categorías y rangos de fechas.",
         "My_Events": "Mis Eventos",
-        "My_Events_Description": "La función Mis Eventos permite a los usuarios guardar sus eventos favoritos y recibir notificaciones cuando estos eventos ocurren.",
+        "My_Events_Description": "La función Mis Eventos permite a los usuarios guardar sus eventos favoritos.",
         "Login": "Inicio de sesión",
         "Login_Description": "Los usuarios pueden iniciar sesión en la aplicación para acceder a funciones personalizadas y guardar sus preferencias.",
         "Quick_Links": "Enlaces rápidos",
@@ -31,12 +31,19 @@
         "My_Events_Link": "Mis Eventos",
         "Login_Link": "Inicio de sesión",
         "Developer_Information": "Información para desarrolladores",
-        "Developer_Info_Text": "Si necesitas soporte o tienes alguna pregunta, por favor contacta a los desarrolladores.",
+        "Developer_Info_Text": "Si necesitas soporte o tienes alguna pregunta, por favor contacta a los desarrolladores: \n Mikel Rojas \n Correo:mikelarr2004@gmail.com \n Jojashley Chaves \n Correo:jojashley@hotmail.com .",
         "Purpose": "Propósito de la aplicación",
         "Purpose_Text": "Esta aplicación fue creada para proporcionar a los usuarios un acceso fácil a información sobre eventos astronómicos e imágenes, mejorando su conocimiento e interés en la astronomía.",
         "Interactive":"Mapa interactivo",
         "Map_text":"Explora el mapa interactivo para descubrir los cuerpos celestes y sus posiciones en el universo. Haz clic en los planetas u otros objetos para saber más sobre ellos.",
-        "Welcome_myEvents":"Bienvenido a tus eventos astronómicos"
+        "Welcome_myEvents":"Bienvenido a tus eventos astronómicos",
+        "H":"Inicio",
+        "Imagen":"Imagen del dia",
+        "EA":"Eclipses/Asteroides",
+        "Universe":"Universo",
+        "Options":"Opciones",
+        "Profile":"Perfil y configuraciones",
+        "Profile-d":"En la parte de perfil y configuraciones puedes observar informacion de tu perfil y puedes realizar cambios en la página"
     },
     "imageOfTheDay": {
         "Title": "Imagen del Día",
@@ -61,5 +68,19 @@
         "Loading": "Cargando...",
         "MoreResults": "Para ver más resultados, debes seleccionar fechas más cercanas.",
         "NoData": "No hay datos disponibles para {{event}}."
+    },
+    "asteroid":{
+        "Magnitude":"Magnitud",
+        "Diameter":"Diametro",
+        "Hazardous":"Peligroso",
+        "Close":"Fecha de aproximación cercana:",
+        "Velocity":"Velocidad",
+        "Miss":"Distancia:"
+    },
+    "eclipse":{
+        "Eclipse":"Eclipse",
+        "Date":"Fecha:",
+        "Maximum":"Punto máximo:",
+        "Places":"Lugares:"
     }
 }
