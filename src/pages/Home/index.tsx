@@ -1,14 +1,47 @@
 
+import { useEffect, useState } from 'react';
+import { getUserSettings, loadUserFromSessionStorage, setUserInfo, useTheme } from '../../common/userInfo';
 import './styles.css';
 import { useTranslation } from 'react-i18next';
+import appFirebase from '../../credentials';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export const Home: React.FC<{}> = () => {
     const [t] = useTranslation("global");
+    const [userLog, setUserLog] = useState<boolean>(() => {
+        const user = loadUserFromSessionStorage();
+        return user !== null;
+      });
+      const [theme, setTheme] = useTheme();
+    
+      useEffect(() => {
+        const auth = getAuth(appFirebase);
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            await setUserInfo(user);
+            setUserLog(true);
+            const userSettings = getUserSettings();
+            if (userSettings) {
+              setTheme(userSettings.color || 'dark');
+            }
+          } else {
+            setUserLog(false);
+          }
+        });
+    
+        return () => unsubscribe();
+      }, [setTheme]);
+    
+
+    const themeClass = theme === 'dark' ? 'dark-theme' : 'light-theme';
+    const stylesTitle= theme === 'dark'
+    ? 'title-dark'
+    : 'title-light';
     
     return (
         <div className="d-flex flex-column justify-content-center align-items-center position-relative" style={{ height: '100vh', textAlign: 'center' }}>
-        <div className="home-container">
-        <h1>{t("header.Home")}</h1>
+        <div className={`home-container ${themeClass}`}>
+        <h1 className={stylesTitle}>{t("header.Home")}</h1>
                 <section className="home-description">
                     <h2>{t("header.Description")}</h2>
                     <p>{t("header.Description_text")}</p>

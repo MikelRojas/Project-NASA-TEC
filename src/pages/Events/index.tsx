@@ -4,6 +4,9 @@ import AsteroidCard from '../../components/AsteroidCard';
 import './styles.css';
 import { NearEarthObject } from '../../common/interfaces';
 import { useTranslation } from 'react-i18next'; 
+import { getUserSettings, loadUserFromSessionStorage, setUserInfo, useTheme } from "../../common/userInfo";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import appFirebase from '../../credentials';
 
 const API_KEY = 'yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ';
 
@@ -18,6 +21,29 @@ export const Events: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [hasMoreResults, setHasMoreResults] = useState<boolean>(false);
+  const [userLog, setUserLog] = useState<boolean>(() => {
+    const user = loadUserFromSessionStorage();
+    return user !== null;
+  });
+  const [theme, setTheme] = useTheme();
+
+  useEffect(() => {
+    const auth = getAuth(appFirebase);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await setUserInfo(user);
+        setUserLog(true);
+        const userSettings = getUserSettings();
+        if (userSettings) {
+          setTheme(userSettings.color || 'dark');
+        }
+      } else {
+        setUserLog(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [setTheme]);
 
   const handleEventSelection = (event: string) => {
     setSelectedEvent(event);
@@ -111,11 +137,19 @@ export const Events: React.FC = () => {
   const minDate = new Date("1901-01-01");
   const maxDate = new Date("2070-12-01");
 
+  const stylesTitle= theme === 'dark'
+  ? 'title-dark'
+  : 'title-light';
+
+  const stylesCalendar= theme === 'dark'
+  ? 'date-inputs-dark'
+  : 'date-inputs';
+
   return (
     <div className="bg-image img-fluid">
       <div style={{ position: 'relative', minHeight: '100vh' }}>
-        <h1>{t("events.Title")}</h1>
-        <div className="date-inputs">
+        <h1 className={stylesTitle}>{t("events.Title")}</h1>
+        <div className={stylesCalendar}>
           <label>
             {t("events.StartDate")}
             <input
@@ -137,7 +171,7 @@ export const Events: React.FC = () => {
             />
           </label>
         </div>
-        <h2>{t("events.SelectEvent")}</h2>
+        <h2 className={stylesTitle}>{t("events.SelectEvent")}</h2>
         <div className="event-buttons">
           <button
             className={`event-button ${selectedEvent === 'Solar Eclipses' ? 'active' : ''}`}

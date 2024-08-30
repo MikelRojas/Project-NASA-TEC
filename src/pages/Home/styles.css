@@ -22,11 +22,29 @@ html, body {
   min-height: 100vh; /* Asegura que cubra al menos el 100% de la altura del viewport */
 }
 
-.title{
+.title-dark{
   color: white !important;
-}
+  text-shadow: 
+  -0.5px -0.5px 0 black,  /* Sombras blancas en las cuatro direcciones */
+  0.5px -0.5px 0 black,
+  -0.5px  0.5px 0 black,
+  0.5px  0.5px 0 black;
+  font-weight: bold; /* Hacer el texto más grueso para un mejor efecto */
+  margin-left: 10px;
+ }
+
+ .title-light{
+  color: black !important;
+  text-shadow: 
+  -0.5px -0.5px 0 white,  /* Sombras blancas en las cuatro direcciones */
+  0.5px -0.5px 0 white,
+  -0.5px  0.5px 0 white,
+  0.5px  0.5px 0 white;
+  font-weight: bold; /* Hacer el texto más grueso para un mejor efecto */
+  margin-left: 10px;
+ }
+/* Estilos comunes */
 .home-description, .home-manual, .home-links, .home-developers, .home-purpose {
-  background: rgba(82, 82, 83, 0.8);
   padding: 10px;
   margin: 10px 0px 10px 10px;
   border-radius: 20px;
@@ -34,8 +52,20 @@ html, body {
   width: 100%;
   max-width: 800px;
   box-sizing: border-box; /* Incluye el padding y borde en el cálculo del ancho */
+}
+
+/* Estilos para el tema oscuro */
+.dark-theme .home-description, .dark-theme .home-manual, .dark-theme .home-links, .dark-theme .home-developers, .dark-theme .home-purpose {
+  background: rgba(82, 82, 83, 0.8);
   color: #ccc; /* Cambia el color del texto a gris claro */
 }
+
+/* Estilos para el tema claro */
+.light-theme .home-description, .light-theme .home-manual, .light-theme .home-links, .light-theme .home-developers, .light-theme .home-purpose {
+  background: rgba(255, 255, 255, 0.8);
+  color: #000000; /* Cambia el color del texto a negro */
+}
+
 
 .manual-section {
   background: rgba(195, 195, 195, 0.8);
@@ -58,10 +88,6 @@ html, body {
   margin-top: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.home-container h1, .home-container h2, .home-container p {
-  color: rgb(255, 255, 255);
 }
 
 .home-container h1 {

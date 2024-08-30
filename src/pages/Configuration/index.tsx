@@ -18,6 +18,8 @@ export const Configuration: React.FC = () => {
     }
   }, []);
 
+  
+
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(event.target.value);
     setLanguage(event.target.value);

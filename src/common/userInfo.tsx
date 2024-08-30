@@ -2,6 +2,7 @@ import { User } from 'firebase/auth';
 import { UserInfo, EclipseData, NearEarthObject,UserSettings} from './interfaces';
 import { getFirestore, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 import appFirebase from '../credentials';
+import { useEffect, useState } from 'react';
 
 
 // Función para cargar currentUser desde sessionStorage
@@ -181,3 +182,15 @@ export const setLanguage = async (language: string) => {
 export const getUserSettings = (): UserSettings | undefined => {
   return currentUser?.settings;
 };
+
+export const useTheme = () => {
+  const [theme, setTheme] = useState<string>(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  return [theme, setTheme] as const;
+};  

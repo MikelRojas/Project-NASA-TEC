@@ -1,116 +1,135 @@
-import { useEffect, useState, useRef} from "react";
-import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
+import { useEffect, useState } from "react";
 import './styles.css';
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
+import { getUserSettings, loadUserFromSessionStorage, setUserInfo, useTheme } from "../../common/userInfo";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import appFirebase from "../../credentials";
 
-
-interface APOD{
-    date:string,
-    explanation:string,
-    title:string,
-    url:string
+interface APOD {
+  date: string;
+  explanation: string;
+  title: string;
+  url: string;
 }
 
 export const AstronomyPicture: React.FC<{}> = () => {
-    const [t] = useTranslation("global");
-    const [showCalendar, setShowCalendar] = useState(false);
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-    const [data, setData] = useState<APOD | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-    const calendarRef = useRef<HTMLDivElement | null>(null); 
+  const [t] = useTranslation("global");
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [data, setData] = useState<APOD | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [userLog, setUserLog] = useState<boolean>(() => {
+    const user = loadUserFromSessionStorage();
+    return user !== null;
+  });
+  const [theme, setTheme] = useTheme();
 
-    const handleDateChange = (date: Date | null) => {
-        if(date){
-            setSelectedDate(date);
-            setShowCalendar(false); // Ocultar el calendario después de seleccionar una fecha
-        }   
-    };
-
-
-    const minDate = new Date('1995-01-01');
-    const maxDate = new Date(); // Fecha actual
-
-    useEffect(() =>{
-        const fetchData = async () =>{
-            setLoading(true);
-            try{
-                const formattedDate = new Date(selectedDate.getTime() - (selectedDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
-                const url = "https://api.nasa.gov/planetary/apod?api_key=yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ&date=" + formattedDate;
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const result: APOD = await response.json();
-                setData(result);
-            } catch (error:unknown) {
-                if (error instanceof Error) {
-                    setError(error.message); 
-                }
-            } finally {
-                setLoading(false);
-            }
+  useEffect(() => {
+    const auth = getAuth(appFirebase);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await setUserInfo(user);
+        setUserLog(true);
+        const userSettings = getUserSettings();
+        if (userSettings) {
+          setTheme(userSettings.color || 'dark');
         }
-        fetchData();
-    },[selectedDate]);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
-                setShowCalendar(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    if (loading) {
-        return <p>Loading...</p>;
+      } else {
+        setUserLog(false);
       }
-    
-      if (error) {
-        return <p>Error: {error}</p>;
+    });
+
+    return () => unsubscribe();
+  }, [setTheme]);
+
+
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newDate = new Date(e.target.value);
+    if (newDate >= minDate && newDate <= maxDate) {
+      setSelectedDate(newDate);
+    } else {
+      alert('Date must be within range 01-01-1995 to today.');
+    }
+  };
+
+  const minDate = new Date('1995-01-01');
+  const maxDate = new Date(); // Fecha actual
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const formattedDate = new Date(selectedDate.getTime() - (selectedDate.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+        const url = "https://api.nasa.gov/planetary/apod?api_key=yeJaLCwvDvU82jsntYaXj1mzz8BiMt5Q3CsZXfoJ&date=" + formattedDate;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result: APOD = await response.json();
+        setData(result);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error.message);
+        }
+      } finally {
+        setLoading(false);
       }
+    };
+    fetchData();
+  }, [selectedDate]);
 
-      return (
-        <div className="bg-image img-fluid">
-            <div style={{ position: 'relative', minHeight: '100vh' }}>
-                <h1>{t("imageOfTheDay.Title")}</h1>
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-                <button id="calendar" onClick={() => setShowCalendar(!showCalendar)}>
-                    {t("imageOfTheDay.SelectDate")}
-                </button>
-                {showCalendar && (
-                    <div className="calendar-overlay" ref={calendarRef}>
-                        <DatePicker
-                            selected={selectedDate}
-                            onChange={handleDateChange}
-                            minDate={new Date()}
-                            maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
-                            inline
-                            showMonthDropdown
-                            showYearDropdown
-                            dropdownMode="select"
-                        />
-                    </div>
-                )}
-                {selectedDate && (
-                    <>
-                        <h2 id="date-select">{t("imageOfTheDay.SelectedDate", { date: selectedDate.toDateString() })}</h2>
-                        <div className="flex-container">
-                            <div className="container-text">
-                                <h1>{data?.title}</h1>
-                                <p>{data?.explanation}</p>
-                            </div>
-                            <img src={data?.url} alt={data?.title} className="img-fluid img-custom-size" />
-                        </div>
-                    </>
-                )}
-            </div>
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+
+  const stylesTitle= theme === 'dark'
+  ? 'title-dark'
+  : 'title-light';
+
+  const stylesText= theme === 'dark'
+  ? 'container-text-dark'
+  : 'container-text-light';
+
+  const stylesCalendar= theme === 'dark'
+  ? 'date-inputs-dark'
+  : 'date-inputs';
+
+  return (
+    <div className="bg-image img-fluid">
+      <div style={{ position: 'relative', minHeight: '100vh', color: 'black' }}>
+        <h1 className={stylesTitle}>{t("imageOfTheDay.Title")}</h1>
+        
+        <div className={stylesCalendar}>
+          <label>
+            {t("imageOfTheDay.SelectDate")}
+            <input
+              type="date"
+              value={selectedDate.toISOString().split('T')[0]}
+              onChange={handleDateChange}
+              min={minDate.toISOString().split('T')[0]}
+              max={maxDate.toISOString().split('T')[0]}
+            />
+          </label>
         </div>
-    );
+        
+        {selectedDate && (
+          <>
+            <div className="flex-container">
+              <div className={stylesText}>
+                <h1>{data?.title}</h1>
+                <p>{data?.explanation}</p>
+              </div>
+              <img src={data?.url} alt={data?.title} className="img-fluid img-custom-size" />
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
