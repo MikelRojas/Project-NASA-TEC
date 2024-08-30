@@ -8,8 +8,13 @@
     border-radius: 15px;
   }
   
-  .title {
-    color: white;
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
+  .title{
+    color: white !important;
+    text-shadow: 
+    -0.5px -0.5px 0 black,  /* Sombras blancas en las cuatro direcciones */
+    0.5px -0.5px 0 black,
+    -0.5px  0.5px 0 black,
+    0.5px  0.5px 0 black;
+    font-weight: bold; /* Hacer el texto más grueso para un mejor efecto */
+    margin-left: 10px;
+   }
