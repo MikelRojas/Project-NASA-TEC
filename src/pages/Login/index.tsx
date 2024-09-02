@@ -86,7 +86,6 @@ export const Login: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="col-md-5">
         <div className="main-class">
           <div className="card card-body shadow-lg">
             <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png" alt="User Profile" className="user-image" />
@@ -106,7 +105,6 @@ export const Login: React.FC = () => {
             </h4>
           </div>
         </div>
-      </div>
       {showPopup && errorMessage && (
         <PopupMessage
           title="Error"
