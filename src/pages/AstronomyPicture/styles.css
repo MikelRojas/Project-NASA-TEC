@@ -143,7 +143,7 @@ flex: 1 1 auto;
     align-items: center; /* Centra los elementos en pantallas pequeñas */
 }
 
-.container-text, .img-custom-size{
+.container-text-dark, .container-text-light, .img-custom-size{
     width: 100%; /* Ajusta el ancho de los elementos al 100% del contenedor */
     max-width: none; /* Elimina el ancho máximo para que se ajuste al contenedor */
     margin-right: 10px;
@@ -165,7 +165,7 @@ flex: 1 1 auto;
     height: 45px;
   }
 
-  .container-text {
+  .container-text-dark, .container-text-light {
     font-size: 14px;
     max-width: 360px;
   }
@@ -199,7 +199,7 @@ flex: 1 1 auto;
     height: 40px;
   }
 
-  .container-text {
+  .container-text-dark, .container-text-light {
     font-size: 12px;
     max-width: 300px;
   }

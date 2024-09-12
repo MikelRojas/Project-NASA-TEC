@@ -5,14 +5,28 @@
     cursor: pointer;
     display: inline-block;
     z-index: 999;
-}
-
-.image-button img {
-    width: 50px;
+  }
+  
+  .image-button img {
+    width: 40px; 
     height: auto;
     transition: transform 0.3s ease;
-}
-
-.image-button:hover img {
+  }
+  
+  .image-button:hover img {
     transform: scale(1.1);
-}
+  }
+  
+
+  @media (max-width: 768px) {
+    .image-button img {
+      width: 30px; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .image-button img {
+      width: 25px; 
+    }
+  }
+  

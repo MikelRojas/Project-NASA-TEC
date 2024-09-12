@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {FavoriteButton} from "./FavoriteButton";
+import { FavoriteButton } from "./FavoriteButton";
 import {EclipseData} from '../common/interfaces';
 import { useTranslation } from 'react-i18next'; 
 

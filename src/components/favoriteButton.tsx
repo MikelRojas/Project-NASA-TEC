@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { EclipseData, NearEarthObject } from '../common/interfaces';
 import './FavoriteButton.css';
 import { addSelectedEvent, getEvets, removeSelectedEvent, getUserInfo } from '../common/userInfo';
-import { PopupMessage } from '../components/PopupMessage';
+import { PopupMessage } from './PopupMessage';
 
 interface Event {
   event: EclipseData | NearEarthObject;
